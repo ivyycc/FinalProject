@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float gravity = -9.8f;
     public float jumpHeight = 3;
-    public bool useGravity = true; // Flag to control gravity
+    public bool useGravity = true; 
 
     // Web Shooting
     public float webRange = 20f; // Maximum range for web shot
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 webTarget; // The point where the web attached on the wall
     private bool isHanging = false; // Tracks if the player is "hanging" on the wall
 
+   
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -44,9 +45,19 @@ public class PlayerMovement : MonoBehaviour
         {
             ShootWeb();
         }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            ShootWeb();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isHanging)
+        {
+            Debug.Log("Space Btn Clicked");
+            //Jump();
+        }
 
         // Continue pulling or hanging as long as the right mouse button is held down
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
         {
             if (isWebShooting)
             {
@@ -67,10 +78,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("B Button pressed");
         }
-        else
-        {
-            Debug.Log("Bomb is not ready/bomb is in cool down");
-        }
+       
     }
 
     // Input method for movement
@@ -99,7 +107,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
+            Debug.Log("Jump while grounded is called");
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
+        else if( isHanging)
+        {
+            
+            Debug.Log("Jump while hanging is called");
+            isHanging = false;
+            useGravity = true; // Re-enable gravity
+
+            // Apply upward jump velocity
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+
+            // Hide the web line
+            webLine.positionCount = 0;
         }
     }
 
@@ -166,9 +188,8 @@ public class PlayerMovement : MonoBehaviour
     // Method to "stick" to the wall
     void StickToWall()
     {
-        // While hanging, the player's movement is restricted, but the web stays attached
-        // This is where you can add logic to allow for wall-climbing or other interactions.
-        // For now, we just maintain the LineRenderer and prevent the player from falling.
+
+       
 
         // Update the start position of the LineRenderer to follow the player's position
         webLine.SetPosition(0, transform.position);
@@ -176,10 +197,21 @@ public class PlayerMovement : MonoBehaviour
         // Prevent the player from falling (disable gravity while hanging)
         useGravity = false;
         playerVelocity.y = 0;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+           
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            
+        }
     }
 
-    // Method to stop web shooting or hanging
-    void StopWeb()
+    
+
+        // Method to stop web shooting or hanging
+        void StopWeb()
     {
         isWebShooting = false;
         isHanging = false;

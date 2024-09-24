@@ -6,27 +6,24 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-   
-
-
     // Movement
     private CharacterController controller;
-   
     private Vector3 playerVelocity;
     public float speed = 5f;
     private bool isGrounded;
     public float gravity = -9.8f;
     public float jumpHeight = 3;
+    public bool useGravity = true; // Flag to control gravity
 
     // Web Shooting
     public float webRange = 20f; // Maximum range for web shot
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
     public string climbableTag = "Climbable";  // Layer for climbable walls
     public LineRenderer webLine; // Optional visual web effect
-    
+
     private bool isWebShooting = false; // Tracks if the player is currently being pulled
     private Vector3 webTarget; // The point where the web attached on the wall
-  
+    private bool isHanging = false; // Tracks if the player is "hanging" on the wall
 
     void Start()
     {
@@ -39,58 +36,63 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
-    // Update is called once per frame
     void Update()
     {
         isGrounded = controller.isGrounded;
 
-        if (Input.GetMouseButtonDown(0)) // Detect left mouse button click
-        {
-            Debug.Log("Mouse Clicked");
-        }
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
             ShootWeb();
         }
-        // If web is active, pull the player towards the web's target point
-        if (isWebShooting)
+
+        // Continue pulling or hanging as long as the right mouse button is held down
+        if (Input.GetMouseButton(1))
         {
-            PullPlayerToTarget();
+            if (isWebShooting)
+            {
+                PullPlayerToTarget();
+            }
+            else if (isHanging)
+            {
+                StickToWall();
+            }
+        }
+        else
+        {
+            // If the button is released, stop web shooting or hanging
+            StopWeb();
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("B Button pressed");
-           
-
         }
         else
         {
             Debug.Log("Bomb is not ready/bomb is in cool down");
         }
-
-       
-
-
     }
 
-
-
-
-    //input man script appl to cc
+    // Input method for movement
     public void ProcessMove(Vector2 input)
     {
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-        playerVelocity.y += gravity * Time.deltaTime;
+
+        // Apply gravity only if useGravity is true
+        if (useGravity)
+        {
+            playerVelocity.y += gravity * Time.deltaTime;
+        }
+
         if (isGrounded && playerVelocity.y < 0)
-            playerVelocity.y = -2f;
+        {
+            playerVelocity.y = -2f; // Reset vertical velocity when grounded
+        }
+
         controller.Move(playerVelocity * Time.deltaTime);
-       // Debug.Log(playerVelocity.y);
     }
 
     public void Jump()
@@ -123,6 +125,9 @@ public class PlayerMovement : MonoBehaviour
                 webLine.positionCount = 2;
                 webLine.SetPosition(0, transform.position); // Start of the web (player's position)
                 webLine.SetPosition(1, webTarget);          // End of the web (wall point)
+
+                // Disable gravity while pulling
+                useGravity = false;
             }
             else
             {
@@ -150,11 +155,39 @@ public class PlayerMovement : MonoBehaviour
         // Check if the player is close enough to the target
         if (Vector3.Distance(transform.position, webTarget) < 1f)
         {
-            // Stop the web movement and hide the LineRenderer
+            // If the player is close enough to the wall, allow them to hang
             isWebShooting = false;
-            webLine.positionCount = 0;
+            isHanging = true;
+
+            // Stop moving the player, but keep the web line active for hanging
         }
     }
-}
-    
 
+    // Method to "stick" to the wall
+    void StickToWall()
+    {
+        // While hanging, the player's movement is restricted, but the web stays attached
+        // This is where you can add logic to allow for wall-climbing or other interactions.
+        // For now, we just maintain the LineRenderer and prevent the player from falling.
+
+        // Update the start position of the LineRenderer to follow the player's position
+        webLine.SetPosition(0, transform.position);
+
+        // Prevent the player from falling (disable gravity while hanging)
+        useGravity = false;
+        playerVelocity.y = 0;
+    }
+
+    // Method to stop web shooting or hanging
+    void StopWeb()
+    {
+        isWebShooting = false;
+        isHanging = false;
+
+        // Hide the LineRenderer
+        webLine.positionCount = 0;
+
+        // Re-enable gravity when the player stops hanging or shooting the web
+        useGravity = true;
+    }
+}

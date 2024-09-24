@@ -291,6 +291,11 @@ MonoBehaviour:
   speed: 5
   gravity: -9.8
   jumpHeight: 3
+  useGravity: 1
+  webRange: 20
+  pullSpeed: 15
+  climbableTag: Climbable
+  webLine: {fileID: 0}
 --- !u!143 &91665264
 CharacterController:
   m_ObjectHideFlags: 0

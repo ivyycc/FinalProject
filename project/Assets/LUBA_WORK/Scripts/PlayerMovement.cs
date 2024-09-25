@@ -16,14 +16,14 @@ public class PlayerMovement : MonoBehaviour
     public bool useGravity = true; 
 
     // Web Shooting
-    public float webRange = 20f; // Maximum range for web shot
+    public float webRange = 20f; // Maximum range for pull
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
-    public string climbableTag = "Climbable";  // Layer for climbable walls
-    public LineRenderer webLine; // Optional visual web effect
-
-    private bool isWebShooting = false; // Tracks if the player is currently being pulled
-    private Vector3 webTarget; // The point where the web attached on the wall
-    private bool isHanging = false; // Tracks if the player is "hanging" on the wall
+    public string climbableTag = "Climbable";  
+    public LineRenderer webLine; 
+    private bool isWebShooting = false; // Tracks
+    private Vector3 webTarget; // The point where the had touched on the wall
+    private bool isHanging = false;
+    public Material webColor;
 
    
     void Start()
@@ -43,10 +43,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
+            webColor.SetColor("_Color", Color.blue);
+            
             ShootWeb();
         }
         else if (Input.GetMouseButtonDown(0))
         {
+            webColor.SetColor("_Color", Color.red);
+            
             ShootWeb();
         }
 

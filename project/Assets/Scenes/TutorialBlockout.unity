@@ -1827,6 +1827,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6d006dbd2cdcc314285242216ac89f58, type: 2}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: webColor
       value: 
       objectReference: {fileID: 2100000, guid: 6d006dbd2cdcc314285242216ac89f58, type: 2}

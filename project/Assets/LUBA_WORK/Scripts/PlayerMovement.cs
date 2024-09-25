@@ -93,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
 
+        if (isHanging)
+        {
+           
+        }
         // Apply gravity only if useGravity is true
         if (useGravity)
         {
@@ -192,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
     // Method to "stick" to the wall
     void StickToWall()
     {
-
+        //line renderer z co ordinate = 800, at index 0;
        
 
         // Update the start position of the LineRenderer to follow the player's position

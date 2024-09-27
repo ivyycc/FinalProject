@@ -26,7 +26,8 @@ public class RockFallHazard : MonoBehaviour
         //if player hits trigger object position, then instantiate....
         if(triggered == true)
         {
-            
+
+            Debug.Log("Method Started");
 
             playerInitialPosition = player.position;
 
@@ -65,13 +66,12 @@ public class RockFallHazard : MonoBehaviour
         Destroy(bird);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             simulatePlayerEnter = true;
             triggered = true;
         }
-        
     }
 }

@@ -10,7 +10,22 @@ public class PlayerLook : MonoBehaviour
     public float xSensitivity = 200f;
     public float ySensitivity = 200f;
 
+    void Start()
+    {
+        // Lock the cursor to the center of the screen
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+    }
 
+    void Update()
+    {
+        // You can toggle the cursor state (for example, to show the cursor in the pause menu)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            
+        }
+    }
     public void ProcessLook(Vector2 input)
     {
         float mouseX = input.x;

@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isHanging = false;
     public Material webColor;
 
+    //Player Stats
+    public int playerHealth;
+    public int playerStamina;
+    public int playerSwingTime;
+    public int playerEnergy;
+
    
     void Start()
     {

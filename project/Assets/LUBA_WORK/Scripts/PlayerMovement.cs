@@ -13,25 +13,32 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float gravity = -9.8f;
     public float jumpHeight = 3;
-    public bool useGravity = true; 
+    public bool useGravity = true;
 
     // Web Shooting
     public float webRange = 20f; // Maximum range for pull
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
-    public string climbableTag = "Climbable";  
-    public LineRenderer webLine; 
-    private bool isWebShooting = false; // Tracks
-    private Vector3 webTarget; // The point where the had touched on the wall
+    public string climbableTag = "Climbable";
+    public LineRenderer webLine;
+    private bool isWebShooting = false; // Tracks if web is being shot
+    private Vector3 webTarget; // The point where the web touched the wall
     private bool isHanging = false;
     public Material webColor;
+    public float maxHangDistance = 9f; // Maximum distance allowed while hanging
 
-    //Player Stats
+    // Player Stats
     public int playerHealth;
     public int playerStamina;
     public int playerSwingTime;
     public int playerEnergy;
 
-   
+    // Camera Zoom
+    public Camera playerCamera;
+    public float normalFOV = 60f;  // Default field of view
+    public float zoomFOV = 30f;    // Zoomed-in field of view
+    public float zoomSpeed = 5f;   // Speed of zoom transition
+    public bool isZoomed = false; // Tracks whether zoom is active
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -40,6 +47,12 @@ public class PlayerMovement : MonoBehaviour
         if (webLine != null)
         {
             webLine.positionCount = 0;
+        }
+
+        // Initialize the camera's field of view to normal
+        if (playerCamera != null)
+        {
+            playerCamera.fieldOfView = normalFOV;
         }
     }
 
@@ -50,20 +63,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
             webColor.SetColor("_Color", Color.blue);
-            
             ShootWeb();
         }
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
             webColor.SetColor("_Color", Color.red);
-            
             ShootWeb();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isHanging)
         {
             Debug.Log("Space Btn Clicked");
-            //Jump();
+            // Jump();
         }
 
         // Continue pulling or hanging as long as the right mouse button is held down
@@ -84,11 +95,14 @@ public class PlayerMovement : MonoBehaviour
             StopWeb();
         }
 
+        // Handle zoom input
+        HandleZoom();
+
+        // Movement input (to be implemented as per your existing logic)
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("B Button pressed");
         }
-       
     }
 
     // Input method for movement
@@ -101,8 +115,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (isHanging)
         {
-           
+            // Logic for movement while hanging
         }
+
         // Apply gravity only if useGravity is true
         if (useGravity)
         {
@@ -124,9 +139,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jump while grounded is called");
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
-        else if( isHanging)
+        else if (isHanging)
         {
-            
             Debug.Log("Jump while hanging is called");
             isHanging = false;
             useGravity = true; // Re-enable gravity
@@ -141,28 +155,21 @@ public class PlayerMovement : MonoBehaviour
 
     void ShootWeb()
     {
-        // Cast a ray from the player's camera forward
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
-        // Check if the ray hits any object within the webRange
         if (Physics.Raycast(ray, out hit, webRange))
         {
-            // Check if the object hit has the "Climbable" tag
             if (hit.collider.CompareTag(climbableTag))
             {
                 Debug.Log("Hit a climbable object!");
-
-                // Store the hit point as the target position for web shooting
                 webTarget = hit.point;
                 isWebShooting = true;
 
-                // Set up the LineRenderer to visualize the web
                 webLine.positionCount = 2;
-                webLine.SetPosition(0, transform.position); // Start of the web (player's position)
-                webLine.SetPosition(1, webTarget);          // End of the web (wall point)
+                webLine.SetPosition(0, transform.position);
+                webLine.SetPosition(1, webTarget);
 
-                // Disable gravity while pulling
                 useGravity = false;
             }
             else
@@ -176,64 +183,66 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Method to pull the player towards the web target
     void PullPlayerToTarget()
     {
-        // Calculate direction from player to web target
         Vector3 directionToTarget = (webTarget - transform.position).normalized;
-
-        // Move the player towards the web target
         controller.Move(directionToTarget * pullSpeed * Time.deltaTime);
-
-        // Update the start position of the LineRenderer to follow the player's position
         webLine.SetPosition(0, transform.position);
 
-        // Check if the player is close enough to the target
         if (Vector3.Distance(transform.position, webTarget) < 1f)
         {
-            // If the player is close enough to the wall, allow them to hang
             isWebShooting = false;
             isHanging = true;
-
-            // Stop moving the player, but keep the web line active for hanging
         }
     }
 
-    // Method to "stick" to the wall
     void StickToWall()
     {
-        //line renderer z co ordinate = 800, at index 0;
-       
-
-        // Update the start position of the LineRenderer to follow the player's position
         webLine.SetPosition(0, transform.position);
-
-        // Prevent the player from falling (disable gravity while hanging)
         useGravity = false;
         playerVelocity.y = 0;
 
+        // Limit the player's movement if they try to move too far from the web anchor
+        float currentDistance = Vector3.Distance(transform.position, webTarget);
+        if (currentDistance > maxHangDistance)
+        {
+            // Move the player back to the max distance from the web target
+            Vector3 directionToTarget = (transform.position - webTarget).normalized;
+            transform.position = webTarget + directionToTarget * maxHangDistance;
+        }
+
+        // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
         {
-           
+            // Movement while sticking to the wall (optional)
         }
         if (Input.GetKey(KeyCode.S))
         {
-            
+            // Movement while sticking to the wall (optional)
         }
     }
 
-    
-
-        // Method to stop web shooting or hanging
-        void StopWeb()
+    void StopWeb()
     {
         isWebShooting = false;
         isHanging = false;
 
-        // Hide the LineRenderer
         webLine.positionCount = 0;
-
-        // Re-enable gravity when the player stops hanging or shooting the web
         useGravity = true;
+    }
+
+    // Handle zoom logic
+    void HandleZoom()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            isZoomed = !isZoomed;
+        }
+
+        float targetFOV = isZoomed ? zoomFOV : normalFOV;
+        if (playerCamera != null)
+        {
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+        }
     }
 }

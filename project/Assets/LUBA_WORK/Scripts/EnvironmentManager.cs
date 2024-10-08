@@ -12,12 +12,15 @@ public class EnvironmentManager : MonoBehaviour
     public bool isNormal;
 
     private PlayerMovement playerManager;
+    // Brayden Script 
+    private WeatherController weatherController;
     public TMP_Text weatherText; // TextMeshPro Text component for weather updates
 
     // Start is called before the first frame update
     void Start()
     {
         playerManager = Object.FindFirstObjectByType<PlayerMovement>();
+        weatherController = Object.FindFirstObjectByType<WeatherController>();
         StartCoroutine(CycleWeather());
         fogSprite.SetActive(false);
     }
@@ -99,6 +102,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             Debug.Log("Rainy weather: Increase player slip or reduce movement speed.");
             playerManager.maxHangTime = 3f; // Normal Hang Time
+            weatherController.StartRain();
         }
         else if (isHot)
         {
@@ -108,6 +112,7 @@ public class EnvironmentManager : MonoBehaviour
         else if (isWindy)
         {
             Debug.Log("Windy weather: Make objects move or affect player movement.");
+            weatherController.StartWind();
             // Add behavior like pushing the player or moving environmental objects
         }
         else if (isNormal)
@@ -115,6 +120,8 @@ public class EnvironmentManager : MonoBehaviour
             Debug.Log("Normal weather: No special conditions.");
             playerManager.maxHangTime = 10f; // Normal Hang Time
             fogSprite.SetActive(false);
+            weatherController.StopRain();
+            weatherController.StopWind();
 
 
         }

@@ -1854,8 +1854,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4259376212505538821, guid: 91fa2bfdfd40c314cb31192b83e1a215, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5564468692552060284}
   m_SourcePrefab: {fileID: 100100000, guid: 91fa2bfdfd40c314cb31192b83e1a215, type: 3}
+--- !u!1 &5564468692552060283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4259376212505538821, guid: 91fa2bfdfd40c314cb31192b83e1a215, type: 3}
+  m_PrefabInstance: {fileID: 5564468692552060282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5564468692552060284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564468692552060283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304e26e5a64587e4eac985067b1842e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rain: {fileID: 1719602832404397500, guid: ec0f218b822e9704e8aec2531345306e, type: 3}
+  darkSkybox: {fileID: 2100000, guid: 56cfc4064c211dc40b7e46473c07e70b, type: 2}
+  lightningLight: {fileID: 6051049180926852264, guid: ced550eee61221048b6e0e4b81fe1686, type: 3}
+  wind: {fileID: 5447165657120431567, guid: 121815f4ecccf2544a2257ebc4264257, type: 3}
 --- !u!1001 &6897836852764332986
 PrefabInstance:
   m_ObjectHideFlags: 0

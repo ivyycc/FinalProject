@@ -32,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     public int playerSwingTime;
     public int playerEnergy;
 
+    //HangStats
+    public float maxHangTime = 5f; // Maximum time the player can hang (in seconds)
+    private float currentHangTime = 0f; // Timer to track hangTime
+
     // Camera Zoom
     public Camera playerCamera;
     public float normalFOV = 60f;  // Default field of view
@@ -98,11 +102,7 @@ public class PlayerMovement : MonoBehaviour
         // Handle zoom input
         HandleZoom();
 
-        // Movement input (to be implemented as per your existing logic)
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("B Button pressed");
-        }
+       
     }
 
     // Input method for movement
@@ -211,6 +211,13 @@ public class PlayerMovement : MonoBehaviour
             transform.position = webTarget + directionToTarget * maxHangDistance;
         }
 
+        currentHangTime += Time.deltaTime;
+        if (currentHangTime >= maxHangTime)
+        {
+            Debug.Log("Max hang time exceeded, falling!");
+            StopWeb(); // Call StopWeb to make the player fall
+        }
+
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
         {
@@ -229,6 +236,8 @@ public class PlayerMovement : MonoBehaviour
 
         webLine.positionCount = 0;
         useGravity = true;
+
+        currentHangTime = 0f;
     }
 
     // Handle zoom logic

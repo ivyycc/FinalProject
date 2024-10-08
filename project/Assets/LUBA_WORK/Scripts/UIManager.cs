@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerManager = FindObjectOfType<PlayerMovement>();
+        playerManager = Object.FindFirstObjectByType<PlayerMovement>();
     }
 
     // Update is called once per frame

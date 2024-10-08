@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnvironmentManager : MonoBehaviour
 {
     public bool isFog;
+    public GameObject fogSprite;
     public bool isRain;
     public bool isHot;
     public bool isWindy;
@@ -18,6 +19,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         playerManager = Object.FindFirstObjectByType<PlayerMovement>();
         StartCoroutine(CycleWeather());
+        fogSprite.SetActive(false);
     }
 
     private void Update()
@@ -90,12 +92,13 @@ public class EnvironmentManager : MonoBehaviour
         if (isFog)
         {
             Debug.Log("Foggy weather: Reduce visibility for the player.");
+            fogSprite.SetActive(true);
             // Add behavior like reducing visibility
         }
         else if (isRain)
         {
             Debug.Log("Rainy weather: Increase player slip or reduce movement speed.");
-            playerManager.maxHangTime = 5f; // Normal Hang Time
+            playerManager.maxHangTime = 3f; // Normal Hang Time
         }
         else if (isHot)
         {
@@ -111,7 +114,9 @@ public class EnvironmentManager : MonoBehaviour
         {
             Debug.Log("Normal weather: No special conditions.");
             playerManager.maxHangTime = 10f; // Normal Hang Time
-            
+            fogSprite.SetActive(false);
+
+
         }
     }
 }

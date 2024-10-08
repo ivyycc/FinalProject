@@ -4,5 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/EnemiesScene.unity
+    guid: 28cc1061622336f40ae37fba9cc5bfb2
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

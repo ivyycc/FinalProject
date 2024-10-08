@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 6f1418cffd12146f2a83be795f6fa5a7
+ShaderImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76545
+  packageName: Free Low Poly Toon Nature
+  packageVersion: 1.0
+  assetPath: Assets/Free Low Poly Toon Nature/Standard Assets/Effects/ImageEffects/Shaders/_Antialiasing/FXAAPreset2.shader
+  uploadId: 147426

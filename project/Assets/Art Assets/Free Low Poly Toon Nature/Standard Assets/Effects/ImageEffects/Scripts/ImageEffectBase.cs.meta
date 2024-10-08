@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f6469eb0ad1119d6d00011d98d76c639
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76545
+  packageName: Free Low Poly Toon Nature
+  packageVersion: 1.0
+  assetPath: Assets/Free Low Poly Toon Nature/Standard Assets/Effects/ImageEffects/Scripts/ImageEffectBase.cs
+  uploadId: 147426

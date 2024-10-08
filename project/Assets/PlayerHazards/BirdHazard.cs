@@ -25,11 +25,9 @@ public class BirdHoverAttack : MonoBehaviour
         if (triggerBirdAttack && !isSpawning)
         {
             triggerBirdAttack = false;
-                
+
             StartCoroutine(SpawnBirdsContinuously());
             Debug.Log("Bird Spawn Started");
-            
-            
         }
 
         if (birdDamageTaken >= birdHealth)
@@ -40,45 +38,45 @@ public class BirdHoverAttack : MonoBehaviour
 
     private IEnumerator SpawnBirdsContinuously()
     {
-        
-            isSpawning = true;
+        isSpawning = true;
 
+        while (true)
+        {
+            
+            float randomXOffset = Random.Range(-5f, 5f);
+            Vector3 spawnPosition = player.position + Vector3.up * hoverHeight + Vector3.right * randomXOffset;
+            GameObject birdInstance = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
+            spawnedBirds.Add(birdInstance);
+            currentBirdSpawnCount++;
+            Debug.Log("Spawned Bird in loop");
 
-            while (true)
-            {
-               //if (currentBirdSpawnCount < maxBirdSpawnCount)
-               //{
+            StartCoroutine(HoverAndAttack(birdInstance, spawnPosition));
 
-                Vector3 spawnPosition = player.position + Vector3.up * hoverHeight;
-                GameObject birdInstance = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
-                spawnedBirds.Add(birdInstance);
-                currentBirdSpawnCount++;
-                Debug.Log("Spawned Bird in loop");
-
-
-                StartCoroutine(HoverAndAttack(birdInstance));
-
-
-                yield return new WaitForSeconds(spawnInterval);
-               //}
-               
+            yield return new WaitForSeconds(spawnInterval);
         }
-            
-            
-
-        
     }
 
-    private IEnumerator HoverAndAttack(GameObject birdInstance)
+    private IEnumerator HoverAndAttack(GameObject birdInstance, Vector3 originalPosition)
     {
-
-        yield return new WaitForSeconds(hoverDuration);
-
-
-        if (birdInstance != null)
+        while (true)
         {
-            Rigidbody birdRb = birdInstance.GetComponent<Rigidbody>();
-            birdRb.velocity = (player.position - birdInstance.transform.position).normalized * birdSpeed;
+           
+            yield return new WaitForSeconds(hoverDuration);
+
+            if (birdInstance != null)
+            {
+                Rigidbody birdRb = birdInstance.GetComponent<Rigidbody>();
+                birdRb.velocity = (player.position - birdInstance.transform.position).normalized * birdSpeed;
+
+               
+                yield return new WaitForSeconds(Vector3.Distance(player.position, birdInstance.transform.position) / birdSpeed);
+
+     
+                birdRb.velocity = (originalPosition - birdInstance.transform.position).normalized * birdSpeed;
+
+           
+                yield return new WaitForSeconds(Vector3.Distance(originalPosition, birdInstance.transform.position) / 10f);
+            }
         }
     }
 }

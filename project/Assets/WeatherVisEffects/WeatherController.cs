@@ -46,7 +46,7 @@ public class WeatherController : MonoBehaviour
         }
     }
 
-    void StartRain()
+    public void StartRain()
     {
     
         rain.Play();
@@ -56,7 +56,7 @@ public class WeatherController : MonoBehaviour
         Debug.Log("Is Rainy");
     }
 
-    void StopRain()
+    public void StopRain()
     {
        
         rain.Stop();
@@ -79,14 +79,14 @@ public class WeatherController : MonoBehaviour
         Debug.Log("Lightning triggered");
     }
 
-    void StartWind()
+   public void StartWind()
     {
        
         wind.Play();
         Debug.Log("Is windy");
     }
 
-    void StopWind()
+    public void StopWind()
     {
       
         wind.Stop();

@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnvironmentManager : MonoBehaviour
 {
     public bool isFog;
+
+    //Weather Spirtes
     public GameObject fogSprite;
+    public GameObject HotSprite;
     public bool isRain;
     public bool isHot;
     public bool isWindy;

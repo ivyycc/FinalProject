@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isHanging = false;
     public Material webColor;
     public float maxHangDistance = 9f; // Maximum distance allowed while hanging
+    public float handDistance = 1.5f;
 
     // Player Stats
     public int playerHealth;
@@ -189,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(directionToTarget * pullSpeed * Time.deltaTime);
         webLine.SetPosition(0, transform.position);
 
-        if (Vector3.Distance(transform.position, webTarget) < 1f)
+        if (Vector3.Distance(transform.position, webTarget) < handDistance)
         {
             isWebShooting = false;
             isHanging = true;

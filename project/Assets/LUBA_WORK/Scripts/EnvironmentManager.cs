@@ -107,6 +107,7 @@ public class EnvironmentManager : MonoBehaviour
             Debug.Log("Rainy weather: Increase player slip or reduce movement speed.");
             playerManager.maxHangTime = 3f; // Normal Hang Time
             weatherController.StartRain();
+            weatherController.lightning();
         }
         else if (isHot)
         {

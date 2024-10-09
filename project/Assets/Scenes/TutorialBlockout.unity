@@ -554,11 +554,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 521923134537903089, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: xSensitivity
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 521923134537903089, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: ySensitivity
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1829996214057878722, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_Name
@@ -610,11 +610,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8218515461430824467, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_SlopeLimit
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: speed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: jumpHeight
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

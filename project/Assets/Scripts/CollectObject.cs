@@ -29,6 +29,7 @@ public class CollectObject : MonoBehaviour
                 if(radio[i] == other)
                 {
                     isCollected[i] = true;
+                    radio[i].gameObject.SetActive(false);
                 }
                 else
                 {

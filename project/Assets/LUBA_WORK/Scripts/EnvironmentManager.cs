@@ -40,30 +40,30 @@ public class EnvironmentManager : MonoBehaviour
         while (true)
         {
             // Normal weather for 1 minute
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(30);
             SetWeatherCondition("Foggy", true, false, false, false);  // Set fog
             PerformWeatherBehavior();
-            yield return new WaitForSeconds(60);                      // Wait for 1 minute
+            yield return new WaitForSeconds(30);                      // Wait for 1 minute
             ResetWeather();
-            yield return new WaitForSeconds(30);                      // 30 second rest
+            yield return new WaitForSeconds(15);                      // 30 second rest
 
             SetWeatherCondition("Rainy", false, true, false, false);  // Set rain
             PerformWeatherBehavior();
-            yield return new WaitForSeconds(60);                      // Wait for 1 minute
+            yield return new WaitForSeconds(30);                      // Wait for 1 minute
             ResetWeather();
-            yield return new WaitForSeconds(30);                      // 30 second rest
+            yield return new WaitForSeconds(15);                      // 30 second rest
 
             SetWeatherCondition("Hot", false, false, true, false);    // Set heat
             PerformWeatherBehavior();
-            yield return new WaitForSeconds(60);                      // Wait for 1 minute
+            yield return new WaitForSeconds(30);                      // Wait for 1 minute
             ResetWeather();
-            yield return new WaitForSeconds(30);                      // 30 second rest
+            yield return new WaitForSeconds(15);                      // 30 second rest
 
             SetWeatherCondition("Windy", false, false, false, true);  // Set wind
             PerformWeatherBehavior();
-            yield return new WaitForSeconds(60);                      // Wait for 1 minute
+            yield return new WaitForSeconds(30);                      // Wait for 1 minute
             ResetWeather();
-            yield return new WaitForSeconds(30);                      // 30 second rest
+            yield return new WaitForSeconds(15);                      // 30 second rest
         }
     }
 

@@ -610,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8218515461430824467, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_SlopeLimit
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: speed

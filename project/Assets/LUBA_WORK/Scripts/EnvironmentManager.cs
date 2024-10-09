@@ -107,6 +107,7 @@ public class EnvironmentManager : MonoBehaviour
         else if (isHot)
         {
             Debug.Log("Hot weather: Drain player stamina faster.");
+            weatherController.StartHotWeather();
             playerManager.maxHangTime = 7f; // Normal Hang Time
         }
         else if (isWindy)
@@ -122,7 +123,7 @@ public class EnvironmentManager : MonoBehaviour
             fogSprite.SetActive(false);
             weatherController.StopRain();
             weatherController.StopWind();
-
+            weatherController.StopHotWeather();
 
         }
     }

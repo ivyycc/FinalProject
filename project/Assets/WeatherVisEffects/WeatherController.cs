@@ -5,6 +5,7 @@ public class WeatherController : MonoBehaviour
 {
     public ParticleSystem rain;
     public Material darkSkybox;
+    public Material hotSkybox;
     public Light lightningLight;
     public ParticleSystem wind;
     private Material originalSkybox;
@@ -54,6 +55,19 @@ public class WeatherController : MonoBehaviour
         RenderSettings.skybox = darkSkybox;
 
         Debug.Log("Is Rainy");
+    }
+
+    public void StartHotWeather()
+    {
+
+    
+        RenderSettings.skybox = hotSkybox;
+
+        Debug.Log("Is Hot");
+    }
+    public void StopHotWeather()
+    {
+        RenderSettings.skybox = originalSkybox;
     }
 
     public void StopRain()

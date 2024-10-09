@@ -52,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
         if (webLine != null)
         {
             webLine.positionCount = 0;
+            webLine.startWidth = 0.1f; // Adjust this value to set the start width
+            webLine.endWidth = 0.1f;   // Adjust this value to set the end width
+
         }
 
         // Initialize the camera's field of view to normal
@@ -138,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             Debug.Log("Jump while grounded is called");
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
         else if (isHanging)
         {
@@ -147,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             useGravity = true; // Re-enable gravity
 
             // Apply upward jump velocity
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
 
             // Hide the web line
             webLine.positionCount = 0;
@@ -222,11 +225,11 @@ public class PlayerMovement : MonoBehaviour
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
         {
-            // Movement while sticking to the wall (optional)
+           // controller.Move(Vector3.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            // Movement while sticking to the wall (optional)
+          //  controller.Move(Vector3.down * speed * Time.deltaTime);
         }
     }
 

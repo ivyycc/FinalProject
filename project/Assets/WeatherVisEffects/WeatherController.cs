@@ -23,10 +23,7 @@ public class WeatherController : MonoBehaviour
       
        
      
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(TriggerLightning());    // Triggers Lightning
-        }
+        
  
       
     }

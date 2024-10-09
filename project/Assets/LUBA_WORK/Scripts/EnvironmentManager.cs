@@ -26,6 +26,7 @@ public class EnvironmentManager : MonoBehaviour
         weatherController = Object.FindFirstObjectByType<WeatherController>();
         StartCoroutine(CycleWeather());
         fogSprite.SetActive(false);
+        HotSprite.SetActive(false);
     }
 
     private void Update()
@@ -112,6 +113,7 @@ public class EnvironmentManager : MonoBehaviour
             Debug.Log("Hot weather: Drain player stamina faster.");
             weatherController.StartHotWeather();
             playerManager.maxHangTime = 7f; // Normal Hang Time
+            HotSprite.SetActive(true);
         }
         else if (isWindy)
         {
@@ -126,6 +128,7 @@ public class EnvironmentManager : MonoBehaviour
             fogSprite.SetActive(false);
             weatherController.StopRain();
             weatherController.StopWind();
+            HotSprite.SetActive(false);
             weatherController.StopHotWeather();
 
         }

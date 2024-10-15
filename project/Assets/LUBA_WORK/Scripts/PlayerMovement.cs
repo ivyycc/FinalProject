@@ -22,10 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public LineRenderer webLine;
     private bool isWebShooting = false; // Tracks if web is being shot
     private Vector3 webTarget; // The point where the web touched the wall
-    private bool isHanging = false;
+    public bool isHanging = false;
     public Material webColor;
     public float maxHangDistance = 9f; // Maximum distance allowed while hanging
     public float handDistance = 1.5f;
+
+    
 
     // Player Stats
     public int playerHealth;
@@ -66,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        
         isGrounded = controller.isGrounded;
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web

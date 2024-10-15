@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.8f;
     public float jumpHeight = 3;
     public bool useGravity = true;
+    private bool isFalling = false;
+
 
     // Web Shooting
     public float webRange = 20f; // Maximum range for pull
@@ -46,6 +48,46 @@ public class PlayerMovement : MonoBehaviour
     public float zoomSpeed = 5f;   // Speed of zoom transition
     public bool isZoomed = false; // Tracks whether zoom is active
 
+    // Camera Shake
+    public float shakeDuration = 0.5f; // Duration of the shake
+    public float shakeMagnitude = 0.1f; // Magnitude of the shake
+    private Coroutine shakeCoroutine; // Reference to the shake coroutine
+
+
+    private void ShakeCamera()
+    {   
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine); // Stop any ongoing shake coroutine
+        }
+        shakeCoroutine = StartCoroutine(Shake(shakeDuration));
+    }
+
+    private IEnumerator Shake(float duration)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if(isFalling)
+        {
+            Vector3 originalPosition = playerCamera.transform.localPosition; // Store original position
+            float elapsed = 0.0f;
+
+            while (elapsed < duration)
+            {
+                float x = Random.Range(-1f, 1f) * shakeMagnitude; // Random x offset
+                float y = Random.Range(-1f, 1f) * shakeMagnitude; // Random y offset
+
+                playerCamera.transform.localPosition = new Vector3(x, y, originalPosition.z); // Apply shake
+
+                elapsed += Time.deltaTime; // Increment elapsed time
+                yield return null; // Wait for the next frame
+            }
+
+            playerCamera.transform.localPosition = originalPosition; // Reset to original position
+        }
+       
+    }
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -71,6 +113,13 @@ public class PlayerMovement : MonoBehaviour
 
         
         isGrounded = controller.isGrounded;
+        CheckIfFalling();
+
+        if (isFalling)
+        {
+            ShakeCamera();
+            Debug.Log("Player is falling");
+        }
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
@@ -112,6 +161,14 @@ public class PlayerMovement : MonoBehaviour
 
        
     }
+
+    void CheckIfFalling()
+    {
+        // The player is falling if they are not grounded and their vertical velocity is negative
+        isFalling = !isGrounded && playerVelocity.y < 0;
+    }
+
+
 
     // Input method for movement
     public void ProcessMove(Vector2 input)

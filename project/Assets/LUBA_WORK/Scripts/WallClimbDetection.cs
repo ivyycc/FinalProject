@@ -3,12 +3,19 @@ using UnityEngine.UI;
 
 public class WallClimbDetection : MonoBehaviour
 {
-    public float maxClimbDistance = 5f; // Maximum distance to detect a climbable wall
+    public float maxClimbDistance = 15f; // Maximum distance to detect a climbable wall
+    private PlayerMovement playerMovement;
     public Transform cameraTransform;   // Reference to the player's camera
     public LayerMask climbableLayer;    // Define the layer for climbable walls (optional if you want to use Layers instead of Tags)
     public Image aimingDot;             // The aiming dot UI element
-
+    public RectTransform crossHairSpinningPart;
+    public float crossHairSpinSpeed = 200.0f;
     private RaycastHit hitInfo;
+
+        private void Start()
+    {
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -26,13 +33,24 @@ public class WallClimbDetection : MonoBehaviour
             // Check if the object hit is tagged as "Climbable"
             if (hitInfo.collider.CompareTag("Climbable"))
             {
+              
                 // Show aiming dot if we hit a climbable wall within the specified distance
-                aimingDot.gameObject.SetActive(true);
+                if(playerMovement.isHanging)
+                {
+                    aimingDot.gameObject.SetActive(false);
+                }
+                else
+                {
+                    aimingDot.gameObject.SetActive(true);
+                }
+               // aimingDot.gameObject.SetActive(true);
             }
             else
             {
                 // If not looking at a climbable wall, hide the aiming dot
                 aimingDot.gameObject.SetActive(false);
+               
+               
             }
         }
         else

@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.8f;
     public float jumpHeight = 3;
     public bool useGravity = true;
+    private bool isFalling = false;
+
 
     // Web Shooting
     public float webRange = 20f; // Maximum range for pull
@@ -22,9 +24,12 @@ public class PlayerMovement : MonoBehaviour
     public LineRenderer webLine;
     private bool isWebShooting = false; // Tracks if web is being shot
     private Vector3 webTarget; // The point where the web touched the wall
-    private bool isHanging = false;
+    public bool isHanging = false;
     public Material webColor;
     public float maxHangDistance = 9f; // Maximum distance allowed while hanging
+    public float handDistance = 1.5f;
+
+    
 
     // Player Stats
     public int playerHealth;
@@ -43,6 +48,46 @@ public class PlayerMovement : MonoBehaviour
     public float zoomSpeed = 5f;   // Speed of zoom transition
     public bool isZoomed = false; // Tracks whether zoom is active
 
+    // Camera Shake
+    public float shakeDuration = 0.5f; // Duration of the shake
+    public float shakeMagnitude = 0.1f; // Magnitude of the shake
+    private Coroutine shakeCoroutine; // Reference to the shake coroutine
+
+
+    private void ShakeCamera()
+    {   
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine); // Stop any ongoing shake coroutine
+        }
+        shakeCoroutine = StartCoroutine(Shake(shakeDuration));
+    }
+
+    private IEnumerator Shake(float duration)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if(isFalling)
+        {
+            Vector3 originalPosition = playerCamera.transform.localPosition; // Store original position
+            float elapsed = 0.0f;
+
+            while (elapsed < duration)
+            {
+                float x = Random.Range(-1f, 1f) * shakeMagnitude; // Random x offset
+                float y = Random.Range(-1f, 1f) * shakeMagnitude; // Random y offset
+
+                playerCamera.transform.localPosition = new Vector3(x, y, originalPosition.z); // Apply shake
+
+                elapsed += Time.deltaTime; // Increment elapsed time
+                yield return null; // Wait for the next frame
+            }
+
+            playerCamera.transform.localPosition = originalPosition; // Reset to original position
+        }
+       
+    }
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -51,6 +96,9 @@ public class PlayerMovement : MonoBehaviour
         if (webLine != null)
         {
             webLine.positionCount = 0;
+            webLine.startWidth = 0.1f; // Adjust this value to set the start width
+            webLine.endWidth = 0.1f;   // Adjust this value to set the end width
+
         }
 
         // Initialize the camera's field of view to normal
@@ -62,7 +110,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        
         isGrounded = controller.isGrounded;
+        CheckIfFalling();
+
+        if (isFalling)
+        {
+            ShakeCamera();
+            Debug.Log("Player is falling");
+        }
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
@@ -105,6 +162,14 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
+    void CheckIfFalling()
+    {
+        // The player is falling if they are not grounded and their vertical velocity is negative
+        isFalling = !isGrounded && playerVelocity.y < 0;
+    }
+
+
+
     // Input method for movement
     public void ProcessMove(Vector2 input)
     {
@@ -137,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             Debug.Log("Jump while grounded is called");
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
         else if (isHanging)
         {
@@ -146,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
             useGravity = true; // Re-enable gravity
 
             // Apply upward jump velocity
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
 
             // Hide the web line
             webLine.positionCount = 0;
@@ -189,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(directionToTarget * pullSpeed * Time.deltaTime);
         webLine.SetPosition(0, transform.position);
 
-        if (Vector3.Distance(transform.position, webTarget) < 1f)
+        if (Vector3.Distance(transform.position, webTarget) < handDistance)
         {
             isWebShooting = false;
             isHanging = true;
@@ -221,11 +286,11 @@ public class PlayerMovement : MonoBehaviour
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
         {
-            // Movement while sticking to the wall (optional)
+           // controller.Move(Vector3.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            // Movement while sticking to the wall (optional)
+          //  controller.Move(Vector3.down * speed * Time.deltaTime);
         }
     }
 

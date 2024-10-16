@@ -21,30 +21,15 @@ public class WeatherController : MonoBehaviour
     void Update()
     {
       
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartRain();                    // Starts Rain
-        }
        
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StopRain();                     // Stops Rain
-        }
      
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(TriggerLightning());    // Triggers Lightning
-        }
+        
  
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StartWind();                            // Starts Wind
-        }
       
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StopWind();                             // Stops Wind
-        }
+    }
+    public void lightning()
+    {
+        StartCoroutine(TriggerLightning());
     }
 
     public void StartRain()

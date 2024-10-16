@@ -256,16 +256,31 @@ public class PlayerMovement : MonoBehaviour
 
     void PullPlayerToTarget()
     {
+        // Calculate the distance and direction to the web target
         Vector3 directionToTarget = (webTarget - transform.position).normalized;
-        controller.Move(directionToTarget * pullSpeed * Time.deltaTime);
+        float distanceToTarget = Vector3.Distance(transform.position, webTarget);
+
+        // Spring force: The further away, the stronger the pull force
+        float elasticForce = distanceToTarget * pullSpeed;
+
+        // Damping factor to reduce oscillation
+        float damping = 0.1f;
+        Vector3 dampingForce = playerVelocity * damping;
+
+        // Apply the elastic force with damping to move the player
+        controller.Move((directionToTarget * elasticForce - dampingForce) * Time.deltaTime);
+
+        // Update the web line position
         webLine.SetPosition(0, transform.position);
 
-        if (Vector3.Distance(transform.position, webTarget) < handDistance)
+        // If the player is close enough to the web target, switch to hanging mode
+        if (distanceToTarget < handDistance)
         {
             isWebShooting = false;
             isHanging = true;
         }
     }
+
 
     void StickToWall()
     {

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3;
     public bool useGravity = true;
     private bool isFalling = false;
+    public float fallMultiplier = 2.5f; // Multiplier to speed up the fall
 
 
     // Web Shooting
@@ -166,6 +167,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // The player is falling if they are not grounded and their vertical velocity is negative
         isFalling = !isGrounded && playerVelocity.y < 0;
+
+        if (isFalling)
+        {
+            playerVelocity.y += gravity * (fallMultiplier - 1) * Time.deltaTime;
+        }
     }
 
 

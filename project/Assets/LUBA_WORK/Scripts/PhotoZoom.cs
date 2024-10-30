@@ -100,13 +100,26 @@ public class PhotoZoom : MonoBehaviour
     // Toggle the photo gallery UI
     void TogglePhotoGallery()
     {
+
         if (photoGalleryUI != null)
         {
             bool isActive = photoGalleryUI.activeSelf;
             photoGalleryUI.SetActive(!isActive);
-            if (!isActive && photoGallery.Count > 0)
+
+            if (!isActive)
             {
-                DisplayPhoto(currentPhotoIndex);
+                // Pause the game
+                Time.timeScale = 0;
+
+                if (photoGallery.Count > 0)
+                {
+                    DisplayPhoto(currentPhotoIndex);
+                }
+            }
+            else
+            {
+                // Resume the game
+                Time.timeScale = 1;
             }
         }
     }
@@ -125,7 +138,7 @@ public class PhotoZoom : MonoBehaviour
     }
 
     // Show the next photo
-    void ShowNextPhoto()
+   public void ShowNextPhoto()
     {
         if (photoGallery.Count > 0)
         {
@@ -135,7 +148,7 @@ public class PhotoZoom : MonoBehaviour
     }
 
     // Show the previous photo
-    void ShowPreviousPhoto()
+  public  void ShowPreviousPhoto()
     {
         if (photoGallery.Count > 0)
         {

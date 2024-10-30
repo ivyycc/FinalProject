@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     public float shakeDuration = 0.5f; // Duration of the shake
     public float shakeMagnitude = 0.1f; // Magnitude of the shake
     private Coroutine shakeCoroutine; // Reference to the shake coroutine
+
+    public TMP_Text hangTimeText;
 
 
     private void ShakeCamera()
@@ -298,6 +301,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         currentHangTime += Time.deltaTime;
+
+        float timeLeft = Mathf.Max(maxHangTime - currentHangTime, 0f);
+        if (hangTimeText != null)
+        {
+            hangTimeText.text = "Hang Time: " + timeLeft.ToString("F1") + "s";
+        }
+
         if (currentHangTime >= maxHangTime)
         {
             Debug.Log("Max hang time exceeded, falling!");
@@ -324,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
         useGravity = true;
 
         currentHangTime = 0f;
+        hangTimeText.text = "  ";
     }
 
     // Handle zoom logic

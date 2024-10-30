@@ -5,6 +5,7 @@ public class WeatherController : MonoBehaviour
 {
     public ParticleSystem rain;
     public Material darkSkybox;
+    public Material hotSkybox;
     public Light lightningLight;
     public ParticleSystem wind;
     private Material originalSkybox;
@@ -20,33 +21,18 @@ public class WeatherController : MonoBehaviour
     void Update()
     {
       
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartRain();                    // Starts Rain
-        }
        
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StopRain();                     // Stops Rain
-        }
      
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(TriggerLightning());    // Triggers Lightning
-        }
+        
  
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StartWind();                            // Starts Wind
-        }
       
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StopWind();                             // Stops Wind
-        }
+    }
+    public void lightning()
+    {
+        StartCoroutine(TriggerLightning());
     }
 
-    void StartRain()
+    public void StartRain()
     {
     
         rain.Play();
@@ -56,7 +42,20 @@ public class WeatherController : MonoBehaviour
         Debug.Log("Is Rainy");
     }
 
-    void StopRain()
+    public void StartHotWeather()
+    {
+
+    
+        RenderSettings.skybox = hotSkybox;
+
+        Debug.Log("Is Hot");
+    }
+    public void StopHotWeather()
+    {
+        RenderSettings.skybox = originalSkybox;
+    }
+
+    public void StopRain()
     {
        
         rain.Stop();
@@ -79,14 +78,14 @@ public class WeatherController : MonoBehaviour
         Debug.Log("Lightning triggered");
     }
 
-    void StartWind()
+   public void StartWind()
     {
        
         wind.Play();
         Debug.Log("Is windy");
     }
 
-    void StopWind()
+    public void StopWind()
     {
       
         wind.Stop();

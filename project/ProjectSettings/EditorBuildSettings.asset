@@ -5,8 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnemiesScene.unity
     guid: 28cc1061622336f40ae37fba9cc5bfb2
+  - enabled: 1
+    path: Assets/Scenes/TutorialBlockout.unity
+    guid: 6d01d501de104f8469dcdebfaa64e71a
+  - enabled: 0
+    path: Assets/Scenes/Blockout.unity
+    guid: ff1eb07b2c2dfb34dbb12205f8bb403d
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

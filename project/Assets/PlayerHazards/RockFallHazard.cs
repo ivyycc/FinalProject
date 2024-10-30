@@ -5,15 +5,16 @@ public class RockFallHazard : MonoBehaviour
 {
     public GameObject rockPrefab;
     public Transform player;
-    public float fallHeight = 5f;
+    public float fallHeight = 20f;
     public bool simulatePlayerEnter = false;
     public Transform birdSpawnPosition; 
 
     private Vector3 playerInitialPosition;
+    public bool triggered = false;
 
     private void Update()
-    {
-        if (simulatePlayerEnter)
+    { 
+        if (simulatePlayerEnter == true)
         {
             SimulatePlayerEnter();
             simulatePlayerEnter = false;
@@ -22,14 +23,24 @@ public class RockFallHazard : MonoBehaviour
 
     private void SimulatePlayerEnter()
     {
-        playerInitialPosition = player.position;
+        //if player hits trigger object position, then instantiate....
+        if(triggered == true)
+        {
 
-        Vector3 spawnPosition = playerInitialPosition + Vector3.up * fallHeight;
+            Debug.Log("Method Started");
 
-        GameObject bird = Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
+            playerInitialPosition = player.position;
 
-     
-        StartCoroutine(BirdAttack(bird));
+            Vector3 spawnPosition = playerInitialPosition + Vector3.up * fallHeight;
+
+            GameObject bird = Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("rock instantiated");
+            //if right click/left click, push away rock instantiation....?
+
+            StartCoroutine(BirdAttack(bird));
+            
+        }
+       
     }
 
     private IEnumerator BirdAttack(GameObject bird)
@@ -53,5 +64,14 @@ public class RockFallHazard : MonoBehaviour
 
        
         Destroy(bird);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            simulatePlayerEnter = true;
+            triggered = true;
+        }
     }
 }

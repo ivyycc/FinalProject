@@ -14474,7 +14474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070262618329207828, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: maxClimbDistance
-      value: 2.5
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 2496109245469517843, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14538,16 +14538,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: webRange
-      value: 2.5
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: jumpHeight
-      value: 1.8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: hangTimeText
       value: 
       objectReference: {fileID: 398397543}
+    - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: fallMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

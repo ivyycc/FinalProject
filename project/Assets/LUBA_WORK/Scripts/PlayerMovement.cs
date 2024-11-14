@@ -16,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3;
     public bool useGravity = true;
     private bool isFalling = false;
-    public float fallMultiplier = 2.5f; // Multiplier to speed up the fall
+    public float fallMultiplier = 3f; // Multiplier to speed up the fall
 
 
     // Web Shooting
-    public float webRange = 20f; // Maximum range for pull
+    public float webRange = 3.8f; // Maximum range for pull
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
     public string climbableTag = "Climbable";
     public LineRenderer webLine;

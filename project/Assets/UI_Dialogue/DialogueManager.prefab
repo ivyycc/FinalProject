@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2584375299007372477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503984401994202280}
+  - component: {fileID: 1394035837633884119}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503984401994202280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584375299007372477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 332.1357, y: 94.824875, z: 71.897736}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394035837633884119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584375299007372477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7677113a2713845a773a97253e8f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headingText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  dialogues:
+  - speakerName: Ranger
+    lines:
+    - "Randy, why now of all times? This storm isn\u2019t just a drizzle. It's been
+      10 years since we last saw each other in person and you choose to go on a hike
+      before saying hi to your best bud?"
+  - speakerName: Randy
+    lines:
+    - "Relax, buddy! I\u2019ll be out before you know it. Just one last route for
+      my channel. Trust me, this internet stuff really pays well. You should\u2019ve
+      seen my follower count spike after my last stunt!"
+  - speakerName: Ranger
+    lines:
+    - Ok, just stay safe and get back before the park closes.
+  - speakerName: Ranger
+    lines:
+    - "Come on, come on\u2026No signal! This storm is cutting off everything!"
+  - speakerName: Randy
+    lines:
+    - "Hey\u2026 hey, it's Randy! I\u2019m stuck, man! Fell down a hole, no idea
+      where I am. I saw a radio tower before I fell\u2014took a shortcut off the
+      main path."
+  - speakerName: Ranger
+    lines:
+    - "Hang tight, Randy! I\u2019m coming for you. Just keep calm and don\u2019t
+      do anything stupid."
+  - speakerName: Ranger
+    lines:
+    - I swear, Randy, you owe me big time for this.
+  - speakerName: Randy
+    lines:
+    - "It\u2019s filling up with water, man\u2026 I don\u2019t know how much longer
+      I can hold on!"
+  - speakerName: Ranger
+    lines:
+    - "Found it! I see the path you took. Hold on, Randy, I\u2019m almost there."
+  - speakerName: Ranger
+    lines:
+    - "Alright, grab on and don\u2019t let go!"
+  - speakerName: Randy
+    lines:
+    - Thought it was over for me... Thanks, man.
+  - speakerName: Ranger
+    lines:
+    - "Let\u2019s not celebrate just yet. We\u2019ve still got to beat this storm
+      to get out of here."
+  - speakerName: Randy
+    lines:
+    - I livestreamed the whole thing. My followers are going to love this!
+  - speakerName: Ranger
+    lines:
+    - 'I just risked my life to save you and that''s the only thing you care about?! '
+  triggerDialogue: 0

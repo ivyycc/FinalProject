@@ -7,6 +7,9 @@ TagManager:
   - ClimableSurface
   - ClimbableSurface
   - Climbable
+  - Zone1
+  - Zone2
+  - Zone3
   layers:
   - Default
   - TransparentFX

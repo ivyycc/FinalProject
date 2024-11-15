@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class WallClimbDetection : MonoBehaviour
 {
-    public float maxClimbDistance = 15f; // Maximum distance to detect a climbable wall
+    public float maxClimbDistance = 3.8f; // Maximum distance to detect a climbable wall
     private PlayerMovement playerMovement;
     public Transform cameraTransform;   // Reference to the player's camera
     public LayerMask climbableLayer;    // Define the layer for climbable walls (optional if you want to use Layers instead of Tags)

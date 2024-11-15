@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RainBehaviour : MonoBehaviour
 {
-    public ParticleSystem rain;
+    public ParticleSystem rain,wind;
     public Material darkSkybox;
     public Light lightningLight;
     public Light generalLight;
     private Material originalSkybox;
-    public float intensity, generalLight_intensity, waitTime1, waitTime2;
+    public float rain_intensity, wind_intensity, generalLight_intensity, waitTime1, waitTime2, playerSpeed, playerPullSpeed;
     public bool canTriggerLightning;
-
+    public PlayerMovement playerMove;
     private Coroutine lightningCoroutine;
     void Start()
     {
@@ -19,6 +19,7 @@ public class RainBehaviour : MonoBehaviour
         originalSkybox = RenderSettings.skybox;
         lightningLight.intensity = 0;
         generalLight.intensity = 1;
+        canTriggerLightning = true;
     }
 
 
@@ -58,6 +59,15 @@ public class RainBehaviour : MonoBehaviour
         emission.rateOverTime = val;
         generalLight.intensity = val2;
     }
+
+    public void IncreaseWind(float val,float val2, float val3)
+    {
+        var emission = wind.emission;
+        emission.rateOverTime = val;
+        playerMove.speed = val2;
+        playerMove.pullSpeed = val3;
+
+    }
     IEnumerator TriggerLightning(float time1, float time2)
     {
         canTriggerLightning = false;
@@ -84,7 +94,8 @@ public class RainBehaviour : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            IncreaseRain(intensity, generalLight_intensity);
+            IncreaseRain(rain_intensity, generalLight_intensity);
+            IncreaseWind(wind_intensity, playerSpeed, playerPullSpeed);
             lightning(waitTime1, waitTime2);
         }
     }

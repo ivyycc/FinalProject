@@ -16201,6 +16201,18 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8420848721199440075, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: 'checkpoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 129249511}
+    - target: {fileID: 8420848721199440075, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: 'checkpoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1607249853}
+    - target: {fileID: 8420848721199440075, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: 'checkpoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 199245039}
     - target: {fileID: 9118701431232154257, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: speed
       value: 8

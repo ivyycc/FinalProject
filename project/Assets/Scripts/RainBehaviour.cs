@@ -13,6 +13,8 @@ public class RainBehaviour : MonoBehaviour
     public bool canTriggerLightning;
     public PlayerMovement playerMove;
     private Coroutine lightningCoroutine;
+
+     
     void Start()
     {
 
@@ -97,6 +99,7 @@ public class RainBehaviour : MonoBehaviour
             IncreaseRain(rain_intensity, generalLight_intensity);
             IncreaseWind(wind_intensity, playerSpeed, playerPullSpeed);
             lightning(waitTime1, waitTime2);
+
         }
     }
 

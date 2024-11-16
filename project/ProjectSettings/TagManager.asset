@@ -10,6 +10,7 @@ TagManager:
   - Zone1
   - Zone2
   - Zone3
+  - ShakyRock
   layers:
   - Default
   - TransparentFX

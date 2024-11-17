@@ -636,13 +636,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2482578894346128018, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 3754461098499159628, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_Name
       value: 2.007 (19)
       objectReference: {fileID: 0}
     - target: {fileID: 3754461098499159628, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1542,6 +1546,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826786615}
     m_Modifications:
+    - target: {fileID: 136307734599663558, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 7196883470469416701, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -1600,7 +1608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718312273970704502, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1668,7 +1676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2653310356932223154, guid: 9fbfe68366d63064e959ab623c3023ba, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     - target: {fileID: 4104536430750057847, guid: 9fbfe68366d63064e959ab623c3023ba, type: 3}
       propertyPath: m_LocalScale.x
@@ -1722,6 +1730,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6949434129868358273, guid: 9fbfe68366d63064e959ab623c3023ba, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7718,6 +7730,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 321749005}
     m_Modifications:
+    - target: {fileID: 136307734599663558, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 7196883470469416701, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -7776,7 +7792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718312273970704502, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9236,13 +9252,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2482578894346128018, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 3754461098499159628, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_Name
       value: 2.007 (15)
       objectReference: {fileID: 0}
     - target: {fileID: 3754461098499159628, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10928,6 +10948,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826786615}
     m_Modifications:
+    - target: {fileID: 136307734599663558, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 7196883470469416701, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -12762,6 +12786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826786615}
     m_Modifications:
+    - target: {fileID: 615996717151944233, guid: 892cd2a41037dcf4ca885a0137a442b6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 5137564410419226599, guid: 892cd2a41037dcf4ca885a0137a442b6, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -12820,7 +12848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5496113625449221671, guid: 892cd2a41037dcf4ca885a0137a442b6, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20254,6 +20282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826786615}
     m_Modifications:
+    - target: {fileID: 136307734599663558, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 7196883470469416701, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -20312,7 +20344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718312273970704502, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24438,7 +24470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1533290281707202294, guid: 0fdf9d0e42abac543a16b3cf7cdf89d5, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     - target: {fileID: 7739504788512172588, guid: 0fdf9d0e42abac543a16b3cf7cdf89d5, type: 3}
       propertyPath: m_LocalScale.x
@@ -24492,6 +24524,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8421585583865466181, guid: 0fdf9d0e42abac543a16b3cf7cdf89d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26359,6 +26395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826786615}
     m_Modifications:
+    - target: {fileID: 136307734599663558, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 30ab863a2325edc42a7124c789bccc51, type: 2}
     - target: {fileID: 7196883470469416701, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -26417,7 +26457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718312273970704502, guid: 3c4c906f9dd5a5c438abebf6b4d4c798, type: 3}
       propertyPath: m_TagString
-      value: Climbable
+      value: ShakyRock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

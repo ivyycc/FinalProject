@@ -11,6 +11,7 @@ TagManager:
   - Zone2
   - Zone3
   - ShakyRock
+  - Interactable
   layers:
   - Default
   - TransparentFX

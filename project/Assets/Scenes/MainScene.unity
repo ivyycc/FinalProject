@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.55321187, g: 0.5999999, b: 0.47433954, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.09
@@ -236,6 +236,7 @@ MonoBehaviour:
   playerSpeed: 6.5
   playerPullSpeed: 10
   fog_density: 0.07
+  rotation_y: 185
   canTriggerLightning: 0
   playerMove: {fileID: 910548102}
 --- !u!1001 &19807389
@@ -7944,27 +7945,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.2699995
+      value: 7.261
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.0460005
+      value: 9.024
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.648
+      value: 8.795
       objectReference: {fileID: 0}
     - target: {fileID: 448809607070936360, guid: f1dc12cc344e2904faca938e48f94030, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9028,6 +9029,7 @@ MonoBehaviour:
   playerSpeed: 8
   playerPullSpeed: 15
   fog_density: 0.02
+  rotation_y: 90
   canTriggerLightning: 0
   playerMove: {fileID: 910548102}
 --- !u!1 &423542957
@@ -16071,7 +16073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2496109245469517843, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 2496109245469517843, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22562,13 +22564,14 @@ MonoBehaviour:
   lightningLight: {fileID: 1818719322}
   generalLight: {fileID: 1442341510}
   rain_intensity: 100
-  wind_intensity: 70
+  wind_intensity: 100
   generalLight_intensity: 0
   waitTime1: 0.1
   waitTime2: 7
   playerSpeed: 7
   playerPullSpeed: 12
   fog_density: 0.05
+  rotation_y: 130
   canTriggerLightning: 0
   playerMove: {fileID: 910548102}
 --- !u!1 &1382919040 stripped

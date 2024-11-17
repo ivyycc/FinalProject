@@ -9,7 +9,7 @@ public class RainBehaviour : MonoBehaviour
     public Light lightningLight;
     public Light generalLight;
     private Material originalSkybox;
-    public float rain_intensity, wind_intensity, generalLight_intensity, waitTime1, waitTime2, playerSpeed, playerPullSpeed, fog_density;
+    public float rain_intensity, wind_intensity, generalLight_intensity, waitTime1, waitTime2, playerSpeed, playerPullSpeed, fog_density, rotation_y;
     public bool canTriggerLightning;
     public PlayerMovement playerMove;
     private Coroutine lightningCoroutine;
@@ -53,12 +53,13 @@ public class RainBehaviour : MonoBehaviour
         Debug.Log("Is Rainy");
     }
 
-    public void IncreaseRain(float val, float val2, float val3)
+    public void IncreaseRain(float val, float val2, float val3, float val4)
     {
         var emission = rain.emission;
         emission.rateOverTime = val;
         generalLight.intensity = val2;
         RenderSettings.fogDensity = val3;
+        generalLight.transform.rotation = Quaternion.Euler(4, val4, 0);
     }
 
     public void IncreaseWind(float val,float val2, float val3)
@@ -95,7 +96,7 @@ public class RainBehaviour : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            IncreaseRain(rain_intensity, generalLight_intensity, fog_density);
+            IncreaseRain(rain_intensity, generalLight_intensity, fog_density, rotation_y);
             IncreaseWind(wind_intensity, playerSpeed, playerPullSpeed);
             lightning(waitTime1, waitTime2);
         }

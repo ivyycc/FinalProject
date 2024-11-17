@@ -13,6 +13,7 @@ public class RainBehaviour : MonoBehaviour
     public bool canTriggerLightning;
     public PlayerMovement playerMove;
     private Coroutine lightningCoroutine;
+
     void Start()
     {
 
@@ -22,6 +23,7 @@ public class RainBehaviour : MonoBehaviour
         canTriggerLightning = true;
     }
 
+    
 
     public void lightning(float t1, float t2)
     {

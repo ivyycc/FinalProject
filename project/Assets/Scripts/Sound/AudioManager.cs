@@ -180,6 +180,16 @@ public class AudioManager : MonoBehaviour
         Debug.Log($"SetWindParam called with {name}: {val}");
     }
 
+    public void StopSound(EventReference soundEvent)
+    {
+        FMOD.Studio.EventInstance eventInstance;
+        eventInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent);
+
+        // Stop the instance
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
+        eventInstance.release(); // Release the instance to free up resources
+    }
+
     public void CleanUp()
     {
         //stop and release any created instances

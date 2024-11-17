@@ -8,18 +8,31 @@ public class AmbienceSound : MonoBehaviour
 {
     private void Start()
     {
-        AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
+        //AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        //AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
+        if(this.gameObject.name == "Zone1")
+        {
+            AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
+        }
+        else if(this.gameObject.name == "Zone2")
+        {
+            AudioManager.instance.InitializeWind(FMODEvents.instance.Rain, this.transform.position);
+        }
+        else if(this.gameObject.name == "Zone3")
+        {
+            AudioManager.instance.InitializeWind(FMODEvents.instance.Rain, this.transform.position);
+        }
+        
         Debug.Log("wind playing");
         Debug.Log(other.transform.position);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        AudioManager.instance.StopSound(FMODEvents.instance.WindAmbience);
+        Debug.Log("Wind stopped");
     }
 }

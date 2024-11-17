@@ -59,7 +59,11 @@
 			<destination>{4bfba3b2-ba5b-43ed-a7fa-69b002568cdf}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{bf923d65-78b4-4468-9787-1a9f0a29b4dd}" />
+	<object class="EventAutomatableProperties" id="{bf923d65-78b4-4468-9787-1a9f0a29b4dd}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{80502b9b-d6c2-46d1-8c8d-08b39050ac73}" />
 	<object class="Timeline" id="{9b58a840-0d2a-4799-a72c-cacc99a0a8be}">
 		<property name="isProxyEnabled">
@@ -82,7 +86,11 @@
 			<destination>{65a59640-1534-45cd-a262-b36bff676086}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{88dea989-5a67-48f4-a78b-9191a527f3b7}" />
+	<object class="MultiSound" id="{88dea989-5a67-48f4-a78b-9191a527f3b7}">
+		<relationship name="sounds">
+			<destination>{9ef5c88d-a2ad-496c-8f5e-5b20fffe29e1}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{afb749e2-37da-4b0e-969d-601de9e5b49b}">
 		<relationship name="effects">
 			<destination>{b2c9e7b7-5d76-46d7-81ce-cf5f1b7a574d}</destination>
@@ -93,10 +101,24 @@
 		<relationship name="effects">
 			<destination>{1a484505-a972-438c-8a2a-52c0905bb3ab}</destination>
 			<destination>{7ad38c44-c502-445e-a34a-ac71ff9ab783}</destination>
+			<destination>{c764c1ce-c850-48e0-b730-2d9226a3dd4e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a6b0f573-bf1c-48ca-81cf-055502ca63e3}" />
+	<object class="SingleSound" id="{9ef5c88d-a2ad-496c-8f5e-5b20fffe29e1}">
+		<relationship name="audioFile">
+			<destination>{73abf2fa-3ece-4be1-8f0c-4571b6c5ac8d}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{b2c9e7b7-5d76-46d7-81ce-cf5f1b7a574d}" />
 	<object class="MixerBusFader" id="{1a484505-a972-438c-8a2a-52c0905bb3ab}" />
 	<object class="SpatialiserEffect" id="{7ad38c44-c502-445e-a34a-ac71ff9ab783}" />
+	<object class="MultibandEqEffect" id="{c764c1ce-c850-48e0-b730-2d9226a3dd4e}">
+		<property name="frequencyA">
+			<value>195.358505</value>
+		</property>
+		<property name="qualityA">
+			<value>1.19744825</value>
+		</property>
+	</object>
 </objects>

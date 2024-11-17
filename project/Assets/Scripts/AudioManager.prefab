@@ -67,11 +67,11 @@ MonoBehaviour:
     Path: event:/Alarm
   <playerWalk>k__BackingField:
     Guid:
-      Data1: -364097642
-      Data2: 1237271240
-      Data3: -1452599164
-      Data4: 1571482039
-    Path: event:/Footsteps
+      Data1: 104050680
+      Data2: 1257002954
+      Data3: 2127222440
+      Data4: -1582504934
+    Path: event:/Jump 2
   <playerJump>k__BackingField:
     Guid:
       Data1: 1846888654
@@ -109,10 +109,10 @@ MonoBehaviour:
     Path: event:/Alarm
   <Music>k__BackingField:
     Guid:
-      Data1: -1309628030
-      Data2: 1177873198
-      Data3: -1589166682
-      Data4: -1866949219
+      Data1: 981405779
+      Data2: 1113245325
+      Data3: 539495099
+      Data4: 1951134215
     Path: event:/Rain
   <Music2>k__BackingField:
     Guid:
@@ -123,17 +123,17 @@ MonoBehaviour:
     Path: event:/RadioStatic2
   <Rain>k__BackingField:
     Guid:
-      Data1: -1309628030
-      Data2: 1177873198
-      Data3: -1589166682
-      Data4: -1866949219
+      Data1: 981405779
+      Data2: 1113245325
+      Data3: 539495099
+      Data4: 1951134215
     Path: event:/Rain
   <WindAmbience>k__BackingField:
     Guid:
-      Data1: -1205718467
-      Data2: 1145868691
-      Data3: 1372059567
-      Data4: -254003408
+      Data1: 504744026
+      Data2: 1327560392
+      Data3: 1047462534
+      Data4: 174499087
     Path: event:/BackgroundAmbience
 --- !u!1 &8841619055146494484
 GameObject:

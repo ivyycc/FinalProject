@@ -62,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
     hangSlider hangSliderScript;
 
 
+    //SOUND
+    public float footstepTimer = 0f;  // Timer to track footstep intervals
+    public float footstepInterval = 0.5f;
+
     private void ShakeCamera()
     {   
         if (shakeCoroutine != null)
@@ -191,6 +195,24 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        
+        if (isGrounded && controller.velocity.magnitude>0)
+        {
+            footstepTimer += Time.deltaTime; // Increment the timer
+
+            if (footstepTimer >= footstepInterval && isGrounded)
+            {
+                // Play footstep sound using FMOD
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalk, this.transform.position);
+                
+                footstepTimer = 0f; // Reset the timer
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; // Reset timer if player stops moving
+        }
+
 
         if (isHanging)
         {
@@ -209,13 +231,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
+
+        
     }
 
     public void Jump()
     {
         if (isGrounded)
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
             Debug.Log("Jump while grounded is called");
+
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
         else if (isHanging)
@@ -226,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply upward jump velocity
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
             // Hide the web line
             webLine.positionCount = 0;
         }

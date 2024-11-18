@@ -8,6 +8,11 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text zoomtxt;
     private PlayerMovement playerManager;
+
+
+    public GameObject Pause_panel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +23,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         displayUI();
+        Pause();
     }
 
     void displayUI()
@@ -31,8 +37,40 @@ public class UIManager : MonoBehaviour
             zoomtxt.text = " ";
         }
     }
-    
-    
+
+    public void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Pause_panel.SetActive(true);
+            Time.timeScale = 0f; // Freeze the game
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause_panel.SetActive(false);
+            Time.timeScale = 1f; // UnFreeze the game
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+
+    }
+
+    public void SettingsMenu()
+    {
+
+    }
+
 
 }
 

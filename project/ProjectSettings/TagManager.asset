@@ -11,6 +11,12 @@ TagManager:
   - Zone2
   - Zone3
   - ShakyRock
+  - Interactable
+  - Trigger1
+  - Trigger2
+  - Trigger3
+  - Trigger4
+  - Trigger5
   layers:
   - Default
   - TransparentFX

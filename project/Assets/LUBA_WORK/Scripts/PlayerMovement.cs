@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float webRange = 3.8f; // Maximum range for pull
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
     public string climbableTag = "Climbable";
+    string shakyRockTag = "ShakyRock";
     public LineRenderer webLine;
     private bool isWebShooting = false; // Tracks if web is being shot
     private Vector3 webTarget; // The point where the web touched the wall
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     //HangStats
     public float maxHangTime = 5f; // Maximum time the player can hang (in seconds)
-    private float currentHangTime = 0f; // Timer to track hangTime
+    public float currentHangTime = 0f; // Timer to track hangTime
 
     // Camera Zoom
     public Camera playerCamera;
@@ -56,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine shakeCoroutine; // Reference to the shake coroutine
 
     public TMP_Text hangTimeText;
+
+
+    hangSlider hangSliderScript;
 
 
     private void ShakeCamera()
@@ -95,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        hangSliderScript = GetComponent<hangSlider>();
 
         webLine = GetComponent<LineRenderer>();
         if (webLine != null)
@@ -246,6 +251,18 @@ public class PlayerMovement : MonoBehaviour
 
                 useGravity = false;
             }
+            else if (hit.collider.CompareTag(shakyRockTag))
+            {
+                Debug.Log("Hit a climbable object!");
+                webTarget = hit.point;
+                isWebShooting = true;
+
+                webLine.positionCount = 2;
+                webLine.SetPosition(0, transform.position);
+                webLine.SetPosition(1, webTarget);
+
+                useGravity = false;
+            }
             else
             {
                 Debug.Log("Missed! Object is not climbable.");
@@ -303,9 +320,16 @@ public class PlayerMovement : MonoBehaviour
         currentHangTime += Time.deltaTime;
 
         float timeLeft = Mathf.Max(maxHangTime - currentHangTime, 0f);
+
+        if (hangSliderScript != null)
+        {
+            hangSliderScript.showSlider();
+            Debug.Log("Hang Time Animation Turning On");
+        }
+
         if (hangTimeText != null)
         {
-            hangTimeText.text = "Hang Time: " + timeLeft.ToString("F1") + "s";
+           // hangTimeText.text = "Hang Time: " + timeLeft.ToString("F1") + "s";
         }
 
         if (currentHangTime >= maxHangTime)
@@ -335,6 +359,7 @@ public class PlayerMovement : MonoBehaviour
 
         currentHangTime = 0f;
         hangTimeText.text = "  ";
+        hangSliderScript.hideSlider();
     }
 
     // Handle zoom logic

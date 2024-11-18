@@ -10,8 +10,8 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject fogSprite;
     public GameObject HotSprite;
     public bool isRain;
-    public bool isHot;
-    public bool isWindy;
+    //public bool isHot;
+    //public bool isWindy;
     public bool isNormal;
 
     private PlayerMovement playerManager;
@@ -72,8 +72,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         isFog = fog;
         isRain = rain;
-        isHot = hot;
-        isWindy = windy;
+        //isHot = hot;
+        //isWindy = windy;
         isNormal = !fog && !rain && !hot && !windy;  // Weather is normal if none of the other conditions are active
 
         // Update the TextMeshPro text with the current condition
@@ -85,8 +85,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         isFog = false;
         isRain = false;
-        isHot = false;
-        isWindy = false;
+        //isHot = false;
+       // isWindy = false;
         isNormal = true;  // Weather is normal when no other conditions are active
 
         // Reset the weather text when no weather is active
@@ -109,28 +109,16 @@ public class EnvironmentManager : MonoBehaviour
             weatherController.StartRain();
             weatherController.lightning();
         }
-        else if (isHot)
-        {
-            Debug.Log("Hot weather: Drain player stamina faster.");
-            weatherController.StartHotWeather();
-            playerManager.maxHangTime = 7f; // Normal Hang Time
-            HotSprite.SetActive(true);
-        }
-        else if (isWindy)
-        {
-            Debug.Log("Windy weather: Make objects move or affect player movement.");
-            weatherController.StartWind();
-            // Add behavior like pushing the player or moving environmental objects
-        }
+        
         else if (isNormal)
         {
             Debug.Log("Normal weather: No special conditions.");
             playerManager.maxHangTime = 10f; // Normal Hang Time
             fogSprite.SetActive(false);
             weatherController.StopRain();
-            weatherController.StopWind();
+           // weatherController.StopWind();
             HotSprite.SetActive(false);
-            weatherController.StopHotWeather();
+           // weatherController.StopHotWeather();
 
         }
     }

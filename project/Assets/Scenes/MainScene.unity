@@ -22728,6 +22728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1533290281707202294, guid: 0fdf9d0e42abac543a16b3cf7cdf89d5, type: 3}
+      propertyPath: m_TagString
+      value: Climbable
+      objectReference: {fileID: 0}
     - target: {fileID: 7739504788512172588, guid: 0fdf9d0e42abac543a16b3cf7cdf89d5, type: 3}
       propertyPath: m_LocalScale.x
       value: 5

@@ -33,6 +33,7 @@ public class AmbienceSound : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         AudioManager.instance.StopSound(FMODEvents.instance.WindAmbience);
+        AudioManager.instance.StopSound(FMODEvents.instance.Rain);
         Debug.Log("Wind stopped");
     }
 }

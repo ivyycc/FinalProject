@@ -6,7 +6,7 @@ public class Respawn : MonoBehaviour
 {
     public CharacterController characterController;
     public Vector3 lastCheckpointPosition;
-    public bool isFalling;
+    public bool isFalling,passedCheckpoint;
     private bool isRespawning;
 
     [SerializeField] public List<GameObject> checkpoints = new List<GameObject>();
@@ -20,10 +20,12 @@ public class Respawn : MonoBehaviour
 
     void Update()
     {
+
+       
         if (!isRespawning)
         {
             isFalling = !characterController.isGrounded && characterController.velocity.y < -35f;
-            if (isFalling)
+            if (isFalling && passedCheckpoint)
             {
                 RespawnPlayer();
             }
@@ -38,6 +40,9 @@ public class Respawn : MonoBehaviour
         characterController.enabled = true; // Re-enable controller
         isRespawning = true;
         isFalling = false;
+
+
+
         if(lastCheckpointPosition == checkpoints[0].transform.position)
         {
             lastCheckpointPosition = checkpoints[1].transform.position;
@@ -56,5 +61,15 @@ public class Respawn : MonoBehaviour
             isRespawning = false;
             Debug.Log("Player grounded after respawn");
         }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.tag == "checkpoint1" || collision.gameObject.tag == "checkpoint2" || collision.gameObject.tag == "checkpoint3")
+        {
+            passedCheckpoint = true;
+        }
+       
+
     }
 }

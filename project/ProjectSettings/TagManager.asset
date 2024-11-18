@@ -12,6 +12,9 @@ TagManager:
   - Zone3
   - ShakyRock
   - Interactable
+  - checkpoint1
+  - checkpoint2
+  - checkpoint3
   layers:
   - Default
   - TransparentFX

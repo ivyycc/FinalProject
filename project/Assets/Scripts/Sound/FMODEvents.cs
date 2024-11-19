@@ -13,6 +13,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("All SFX")]
     [field: SerializeField] public EventReference playerWalk { get; private set; }
+    [field: SerializeField] public EventReference playerWalkWood { get; private set; }
     [field: SerializeField] public EventReference playerJump { get; private set; }
     [field: SerializeField] public EventReference pickUp { get; private set; }
     [field: SerializeField] public EventReference RadioStatic { get; private set; }

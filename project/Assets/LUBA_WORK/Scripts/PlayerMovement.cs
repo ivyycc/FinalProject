@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -203,7 +204,15 @@ public class PlayerMovement : MonoBehaviour
             if (footstepTimer >= footstepInterval && isGrounded)
             {
                 // Play footstep sound using FMOD
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalk, this.transform.position);
+                if (SceneManager.GetActiveScene().name == "BeginningScene")
+                {
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalkWood, this.transform.position);
+                }
+                else
+                {
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalk, this.transform.position);
+                }
+                
                 
                 footstepTimer = 0f; // Reset the timer
             }

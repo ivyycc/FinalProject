@@ -12,6 +12,11 @@ public class CollectObject : MonoBehaviour
     public GameObject playerCamera;        // Camera from which the raycast will originate
     public string interactableTag = "Interactable"; // Tag to identify interactable objects
 
+    private void Start()
+    {
+        AudioManager.instance.InitializeWind(FMODEvents.instance.Alarm, this.transform.position);
+    }
+
     void Update()
     {
         
@@ -40,6 +45,7 @@ public class CollectObject : MonoBehaviour
                 // Check for interaction input (e.g., pressing "E")
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.pickUp, this.transform.position);
                     hit.collider.gameObject.SetActive(false);
                 }
                 // Add interaction logic here

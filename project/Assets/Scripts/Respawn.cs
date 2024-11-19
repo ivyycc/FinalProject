@@ -6,13 +6,15 @@ public class Respawn : MonoBehaviour
 {
     public CharacterController characterController;
     public Vector3 lastCheckpointPosition;
-    public bool isFalling,passedCheckpoint;
+    public bool isFalling;
     private bool isRespawning;
+    public int currentCheckpointIndex = -1; // Track the last reached checkpoint (-1 means no checkpoint yet)
 
     [SerializeField] public List<GameObject> checkpoints = new List<GameObject>();
     void Start()
     {
         // Store initial position as first checkpoint
+        currentCheckpointIndex = 0;
         lastCheckpointPosition = checkpoints[0].transform.position;
         characterController = this.GetComponent<CharacterController>();
         Debug.Log("Zone1: " + checkpoints[0].transform.position + ", Zone2:  " + checkpoints[1].transform.position + ", Zone3: " + checkpoints[2].transform.position);
@@ -20,12 +22,10 @@ public class Respawn : MonoBehaviour
 
     void Update()
     {
-
-       
         if (!isRespawning)
         {
             isFalling = !characterController.isGrounded && characterController.velocity.y < -35f;
-            if (isFalling && passedCheckpoint)
+            if (isFalling && currentCheckpointIndex >= 0)
             {
                 RespawnPlayer();
             }
@@ -40,17 +40,14 @@ public class Respawn : MonoBehaviour
         characterController.enabled = true; // Re-enable controller
         isRespawning = true;
         isFalling = false;
-
-
-
-        if(lastCheckpointPosition == checkpoints[0].transform.position)
+        /*if(lastCheckpointPosition == checkpoints[0].transform.position)
         {
             lastCheckpointPosition = checkpoints[1].transform.position;
         }
         else if(lastCheckpointPosition == checkpoints[1].transform.position)
         {
             lastCheckpointPosition = checkpoints[2].transform.position;
-        }
+        }*/
 
     }
 
@@ -63,13 +60,27 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+
+    /*private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "checkpoint1" || collision.gameObject.tag == "checkpoint2" || collision.gameObject.tag == "checkpoint3")
+        if (collision.gameObject.tag == "checkpoint0")
+        {
+            passedCheckpoint = true;
+        }
+        if (collision.gameObject.tag == "checkpoint1")
+        {
+            passedCheckpoint = true;
+        }
+        if (collision.gameObject.tag == "checkpoint2")
+        {
+            passedCheckpoint = true;
+        }
+        if (collision.gameObject.tag == "checkpoint3")
         {
             passedCheckpoint = true;
         }
        
 
-    }
+
+    }*/
 }

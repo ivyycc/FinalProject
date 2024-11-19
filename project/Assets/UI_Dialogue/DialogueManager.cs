@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public TMP_Text headingText;
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
-
+    //public Button next;
+   
     [System.Serializable]
     public class Dialogue
     {
@@ -31,6 +33,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         speakers = new Queue<string>();
         dialoguePanel.SetActive(false);
+        triggerDialogue = true;
     }
 
     void Update()
@@ -40,13 +43,20 @@ public class DialogueManager : MonoBehaviour
             triggerDialogue = false;
             TriggerDialogue();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
+        {
+            EndDialogue();
+            Debug.Log("Exit Dialogue");
+        }
     }
 
     public void TriggerDialogue()
     {
-        if (dialoguePanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
         {
             dialoguePanel.SetActive(false);
+            Debug.Log("Exit Dialogue");
         }
         else
         {
@@ -84,8 +94,37 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.tag == "Trigger1")
+        {
+            triggerDialogue = true;
+            collision.enabled = false;
+        }
+        if (collision.gameObject.tag == "Trigger2")
+        {
+            triggerDialogue = true;
+            collision.enabled = false;
+        }
+        if (collision.gameObject.tag == "Trigger3")
+        {
+            triggerDialogue = true;
+            collision.enabled = false;
+        }
+        if (collision.gameObject.tag == "Trigger4")
+        {
+            triggerDialogue = true;
+            collision.enabled = false;
+        }
+        if (collision.gameObject.tag == "Trigger5")
+        {
+            triggerDialogue = true;
+            collision.enabled = false;
+        }
     }
 }

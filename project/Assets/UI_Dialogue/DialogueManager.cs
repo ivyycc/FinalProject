@@ -28,13 +28,15 @@ public class DialogueManager : MonoBehaviour
 
     public bool triggerDialogue;
 
+    private FMOD.Studio.EventInstance radioInstance;
+
     void Start()
     {
         sentences = new Queue<string>();
         speakers = new Queue<string>();
         dialoguePanel.SetActive(false);
         triggerDialogue = true;
-        //AudioManager.instance.InitializeWind(FMODEvents.instance.RadioStatic, this.transform.position);
+        radioInstance = AudioManager.instance.InitializeRadio(FMODEvents.instance.RadioStatic, this.transform.position);
     }
 
     void Update()
@@ -47,7 +49,7 @@ public class DialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
         {
-            AudioManager.instance.StopSound(FMODEvents.instance.RadioStatic);
+            AudioManager.instance.StopSound(radioInstance);
             EndDialogue();
             Debug.Log("Exit Dialogue");
         }

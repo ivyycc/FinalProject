@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     private EventInstance musicEventInstance2;
     private EventInstance WindEventInstance;
     private EventInstance RainEventInstance;
+    private EventInstance radioInstance;
     public static AudioManager instance { get; private set; }
 
 
@@ -167,38 +168,39 @@ public class AudioManager : MonoBehaviour
         Debug.Log("Wind STARTED");
     }
 
-
-    public void SetWindParam(string name, float val)
+    public EventInstance InitializeRadio(EventReference windEvent, Vector3 position)
     {
-        WindEventInstance.setParameterByName(name, val);
-        Debug.Log($"SetWindParam called with {name}: {val}");
+        radioInstance = RuntimeManager.CreateInstance(windEvent);
+        radioInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+        radioInstance.start();
+        return radioInstance;
     }
-
-    public void SetCrumbleParam(string name, float val)
+    public void StopSound(EventInstance eventInstance)
     {
-        //CrumbleEventInstance.setParameterByName(name, val);
-        Debug.Log($"SetWindParam called with {name}: {val}");
-    }
-
-    public void StopSound(EventReference soundEvent)
-    {
-        FMOD.Studio.EventInstance eventInstance;
-        eventInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent);
-
-        // Stop the instance
-        //eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
-        //eventInstance.release(); // Release the instance to free up resources
-
+    
         if (eventInstance.isValid()) // Ensure the event instance exists
         {
-            eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE for abrupt stop
+            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); // Use STOP_MODE.IMMEDIATE for abrupt stop
             eventInstance.release(); // Release the instance to free up resources
+            Debug.Log("sound stopped");
         }
         else
         {
             Debug.LogWarning("Attempted to stop a sound that isn't valid or playing.");
         }
     }
+
+    public void StopSound2(EventReference soundEvent)
+    {
+
+        FMOD.Studio.EventInstance eventInstance;
+        eventInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent);
+
+        // Stop the instance
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
+        eventInstance.release(); // Release the instance to free up resources
+    }
+
 
     public void CleanUp()
     {
@@ -212,6 +214,20 @@ public class AudioManager : MonoBehaviour
                 eventInstance.release();
             }
         }
+    }
+
+
+
+    public void SetWindParam(string name, float val)
+    {
+        WindEventInstance.setParameterByName(name, val);
+        Debug.Log($"SetWindParam called with {name}: {val}");
+    }
+
+    public void SetCrumbleParam(string name, float val)
+    {
+        //CrumbleEventInstance.setParameterByName(name, val);
+        Debug.Log($"SetWindParam called with {name}: {val}");
     }
     private void OnDestroy()
     {

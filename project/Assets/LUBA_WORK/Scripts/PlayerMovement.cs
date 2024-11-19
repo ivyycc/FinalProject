@@ -285,6 +285,8 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
+
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.hitRock, this.transform.position);
             }
             else if (hit.collider.CompareTag(shakyRockTag))
             {

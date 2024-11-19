@@ -72,6 +72,13 @@ MonoBehaviour:
       Data3: 2127222440
       Data4: -1582504934
     Path: event:/Jump 2
+  <playerWalkWood>k__BackingField:
+    Guid:
+      Data1: 1251038500
+      Data2: 1252547971
+      Data3: -876845654
+      Data4: -617285993
+    Path: event:/Footsteps 2
   <playerJump>k__BackingField:
     Guid:
       Data1: 1846888654
@@ -107,6 +114,13 @@ MonoBehaviour:
       Data3: -427989348
       Data4: -1912316324
     Path: event:/Alarm
+  <hitRock>k__BackingField:
+    Guid:
+      Data1: -364202311
+      Data2: 1202977238
+      Data3: -395036285
+      Data4: 2057996560
+    Path: event:/LatchOn
   <Music>k__BackingField:
     Guid:
       Data1: 981405779

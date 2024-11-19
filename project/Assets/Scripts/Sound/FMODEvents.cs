@@ -19,6 +19,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference RadioStatic { get; private set; }
     [field: SerializeField] public EventReference RadioStaticHalf { get; private set; }
     [field: SerializeField] public EventReference Alarm { get; private set; }
+    [field: SerializeField] public EventReference hitRock { get; private set; }
 
     [field: Header("Music")]
     [field: SerializeField] public EventReference Music { get; private set; }

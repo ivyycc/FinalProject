@@ -186,8 +186,18 @@ public class AudioManager : MonoBehaviour
         eventInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent);
 
         // Stop the instance
-        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
-        eventInstance.release(); // Release the instance to free up resources
+        //eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
+        //eventInstance.release(); // Release the instance to free up resources
+
+        if (eventInstance.isValid()) // Ensure the event instance exists
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE for abrupt stop
+            eventInstance.release(); // Release the instance to free up resources
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to stop a sound that isn't valid or playing.");
+        }
     }
 
     public void CleanUp()

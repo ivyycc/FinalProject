@@ -34,6 +34,7 @@ public class DialogueManager : MonoBehaviour
         speakers = new Queue<string>();
         dialoguePanel.SetActive(false);
         triggerDialogue = true;
+        //AudioManager.instance.InitializeWind(FMODEvents.instance.RadioStatic, this.transform.position);
     }
 
     void Update()
@@ -46,6 +47,7 @@ public class DialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
         {
+            AudioManager.instance.StopSound(FMODEvents.instance.RadioStatic);
             EndDialogue();
             Debug.Log("Exit Dialogue");
         }
@@ -104,6 +106,7 @@ public class DialogueManager : MonoBehaviour
         if(collision.gameObject.tag == "Trigger1")
         {
             triggerDialogue = true;
+            
             collision.enabled = false;
         }
         if (collision.gameObject.tag == "Trigger2")

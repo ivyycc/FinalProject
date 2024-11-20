@@ -7,10 +7,12 @@ public class Respawn : MonoBehaviour
     public CharacterController characterController;
     public Vector3 lastCheckpointPosition;
     public bool isFalling;
-    private bool isRespawning;
+    public bool isRespawning;
     public int currentCheckpointIndex = -1; // Track the last reached checkpoint (-1 means no checkpoint yet)
 
     [SerializeField] public List<GameObject> checkpoints = new List<GameObject>();
+    [SerializeField] public List<GameObject> shakyRocks = new List<GameObject>();
+
     void Start()
     {
         // Store initial position as first checkpoint
@@ -28,6 +30,7 @@ public class Respawn : MonoBehaviour
             if (isFalling && currentCheckpointIndex >= 0)
             {
                 RespawnPlayer();
+                RespawnRocks();
             }
         }
     }
@@ -60,6 +63,15 @@ public class Respawn : MonoBehaviour
         }
     }
 
+    void RespawnRocks()
+    {
+        
+        foreach (GameObject rock in shakyRocks)
+        {
+            rock.SetActive(true);
+            Debug.Log("shaky rocks RESWPANING!");
+        }
+    }
 
     /*private void OnTriggerEnter(Collider collision)
     {

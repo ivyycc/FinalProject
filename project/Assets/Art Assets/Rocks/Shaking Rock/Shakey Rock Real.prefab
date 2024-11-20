@@ -317,9 +317,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8478306113770527243}
   - component: {fileID: 1839381474532020283}
+  - component: {fileID: 1441362797255457324}
   m_Layer: 0
   m_Name: Shakey Rock Real
-  m_TagString: Untagged
+  m_TagString: ShakyRock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,6 +364,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1441362797255457324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407985819500799592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b39849a894c4484097d00fdefa8b717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkOnRock: {fileID: 0}
+  hang: 0
 --- !u!1 &6504607934795536263
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,9 +551,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8385722902500884460}
   - component: {fileID: 627206531396475323}
+  - component: {fileID: 2621443413009594146}
   m_Layer: 0
   m_Name: Shakey Rock
-  m_TagString: Untagged
+  m_TagString: ShakyRock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,6 +637,28 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0020184955, y: 0.0048511275, z: 0.0016917819}
     m_Extent: {x: 0.0130302245, y: 0.012521997, z: 0.014573279}
   m_DirtyAABB: 0
+--- !u!64 &2621443413009594146
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7242077079481994253}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4370526411224807847, guid: a937d4fc14355744a88433c6c5aad047, type: 3}
 --- !u!1 &8897782980587594751
 GameObject:
   m_ObjectHideFlags: 0

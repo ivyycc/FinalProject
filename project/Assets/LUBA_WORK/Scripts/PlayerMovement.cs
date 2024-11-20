@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     hangSlider hangSliderScript;
 
 
+    public GameObject currentRock;
+    public Respawn respawn_script;
     private void ShakeCamera()
     {   
         if (shakeCoroutine != null)
@@ -115,12 +117,15 @@ public class PlayerMovement : MonoBehaviour
         {
             playerCamera.fieldOfView = normalFOV;
         }
+
+            
+        
     }
 
     void Update()
     {
 
-        
+
         isGrounded = controller.isGrounded;
         CheckIfFalling();
 
@@ -253,6 +258,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (hit.collider.CompareTag(shakyRockTag))
             {
+                maxHangTime = 3f;
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
                 isWebShooting = true;
@@ -262,10 +268,14 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
+                currentRock = hit.collider.transform.parent.gameObject;
+
+
             }
             else
             {
                 Debug.Log("Missed! Object is not climbable.");
+                
             }
         }
         else
@@ -335,8 +345,10 @@ public class PlayerMovement : MonoBehaviour
         if (currentHangTime >= maxHangTime)
         {
             Debug.Log("Max hang time exceeded, falling!");
+            
             StopWeb(); // Call StopWeb to make the player fall
         }
+        
 
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
@@ -351,6 +363,11 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
+        if (currentRock != null)
+        {
+            currentRock.SetActive(false);
+            currentRock = null;
+        }
         isWebShooting = false;
         isHanging = false;
 
@@ -360,6 +377,8 @@ public class PlayerMovement : MonoBehaviour
         currentHangTime = 0f;
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
+
+        
     }
 
     // Handle zoom logic

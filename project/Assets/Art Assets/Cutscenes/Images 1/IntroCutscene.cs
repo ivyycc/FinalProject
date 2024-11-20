@@ -1,46 +1,124 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement; 
 
-public class PanelController : MonoBehaviour
+public class IntroCutscene: MonoBehaviour
 {
-    public Image panel1;
-    public Image panel2;
-    public Image panel3;
-    public float revealTime = 2.0f;
-    public float delayBetweenPanels = 1.0f;
+    public Image[] images; 
+    public Button nextButton; 
+    public CanvasGroup fadeCanvasGroup;
 
+    private int currentImageIndex = 0; 
+    private float fadeDuration = 1.0f; 
+
+  
     void Start()
     {
-        StartCoroutine(RevealPanels());
-    }
-
-    IEnumerator RevealPanels()
-    {
-        yield return StartCoroutine(FadeInPanel(panel1));
-        yield return new WaitForSeconds(delayBetweenPanels);
-        yield return StartCoroutine(FadeInPanel(panel2));
-        yield return new WaitForSeconds(delayBetweenPanels);
-        yield return StartCoroutine(FadeInPanel(panel3));
-    }
-
-    IEnumerator FadeInPanel(Image panel)
-    {
-        panel.gameObject.SetActive(true);
-        Color color = panel.color;
-        color.a = 0;
-        panel.color = color;
-
-        float elapsedTime = 0;
-        while (elapsedTime < revealTime)
+   
+        foreach (var image in images)
         {
-            color.a = Mathf.Lerp(0, 1, elapsedTime / revealTime);
-            panel.color = color;
+            image.gameObject.SetActive(false);
+        }
+
+       
+        ShowImage(currentImageIndex);
+        nextButton.onClick.AddListener(OnNextButtonPressed); 
+    }
+
+
+    private void ShowImage(int index)
+    {
+        if (index < 0 || index >= images.Length) return; 
+
+
+        images[index].gameObject.SetActive(true);
+        StartCoroutine(FadeImageIn(images[index]));
+    }
+
+  
+    private IEnumerator FadeImageIn(Image image)
+    {
+        CanvasGroup canvasGroup = image.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = image.gameObject.AddComponent<CanvasGroup>(); 
+        }
+
+        float elapsedTime = 0f;
+
+        
+        while (elapsedTime < fadeDuration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        color.a = 1;
-        panel.color = color;
+        canvasGroup.alpha = 1f; 
+    }
+
+  
+    private void OnNextButtonPressed()
+    {
+        currentImageIndex++;
+
+       
+        if (currentImageIndex >= images.Length)
+        {
+            StartCoroutine(FadeOutToBlackAndLoadScene());
+            nextButton.interactable = false; 
+        }
+        else
+        {
+          
+            ShowImage(currentImageIndex);
+        }
+    }
+
+   
+    private IEnumerator FadeOutToBlackAndLoadScene()
+    {
+        
+        foreach (var image in images)
+        {
+            CanvasGroup canvasGroup = image.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = image.gameObject.AddComponent<CanvasGroup>();
+            }
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            canvasGroup.alpha = 0f; 
+        }
+
+       
+        yield return FadeToBlack();
+
+       
+        SceneManager.LoadScene("BeginningScene");
+    }
+
+   
+    private IEnumerator FadeToBlack()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        fadeCanvasGroup.alpha = 1f; 
     }
 }

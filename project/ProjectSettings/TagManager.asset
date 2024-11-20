@@ -21,6 +21,7 @@ TagManager:
   - checkpoint1
   - checkpoint2
   - checkpoint3
+  - checkpoint4
   layers:
   - Default
   - TransparentFX

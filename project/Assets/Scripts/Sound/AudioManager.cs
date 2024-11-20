@@ -33,10 +33,22 @@ public class AudioManager : MonoBehaviour
     private EventInstance radioInstance;
     public static AudioManager instance { get; private set; }
 
+    public Dictionary<EventReference, FMOD.Studio.EventInstance> activeSoundInstances = new Dictionary<EventReference, FMOD.Studio.EventInstance>();
 
     public void Awake()
     {
-        if (instance != null)
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+
+        /*if (instance != null)
         {
             Debug.LogError("Found more than one Audio Manager in the scene");
             Destroy(gameObject);
@@ -47,7 +59,7 @@ public class AudioManager : MonoBehaviour
 
 
         eventInst = new List<EventInstance>();
-
+        */
 
         masterBus = RuntimeManager.GetBus("bus:/");
         //RuntimeManager.LoadBank("Master");
@@ -110,56 +122,67 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    private void InitializeMusic(EventReference musicEventReference)
+    public void InitializeSound(EventReference soundEventRef, Vector3 position)
     {
-        FMOD.Studio.EventInstance musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
-        //musicEventInstance = CreateEventInstance(musicEventReference);event:/Music/BackgroundMusic
+        // Stop existing instance of this sound if it exists
+        if (activeSoundInstances.ContainsKey(soundEventRef))
+        {
+            StopSound3(soundEventRef);
+            Debug.Log("sound is stopped because it already exists");
+        }
+
+        FMOD.Studio.EventInstance soundEventInstance = RuntimeManager.CreateInstance(soundEventRef);
+
+        var attributes = RuntimeUtils.To3DAttributes(position);
+        soundEventInstance.set3DAttributes(attributes);
+        soundEventInstance.start();
+
+        // Store the instance
+        activeSoundInstances[soundEventRef] = soundEventInstance;
+    }
 
 
-
-        musicEventInstance.start();
-        Debug.Log("MUSIC STARTED");
+    public void StopSound3(EventReference soundEventRef)
+    {
+        if (activeSoundInstances.TryGetValue(soundEventRef, out FMOD.Studio.EventInstance instance))
+        {
+            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            instance.release();
+            activeSoundInstances.Remove(soundEventRef);
+        }
+        else
+        {
+            Debug.Log("MUSIC not stopping :(");
+        }
     }
     public void InitializeMusic2(EventReference musicEventReference2)
     {
         musicEventInstance2 = RuntimeManager.CreateInstance(musicEventReference2);
-        //musicEventInstance = CreateEventInstance(musicEventReference);event:/Music/BackgroundMusic
+
         musicEventInstance2.start();
         Debug.Log("MUSIC STARTED");
+
+        musicEventInstance2.release();
+        Debug.Log("Wind STARTED");
     }
 
     public void InitializeWind(EventReference WindEventRef, Vector3 position)
     {
         WindEventInstance = RuntimeManager.CreateInstance(WindEventRef);
-        //FMOD.Studio.EventInstance WindEventInstance = RuntimeManager.CreateInstance(WindEventRef);
-        //musicEventInstance = CreateEventInstance(musicEventReference);event:/Music/BackgroundMusic
-
-
+        
 
         // Set the 3D attributes using the provided position
         var attributes = RuntimeUtils.To3DAttributes(position);
         WindEventInstance.set3DAttributes(attributes);
 
-
-
         WindEventInstance.start();
 
-        WindEventInstance.getPlaybackState(out PLAYBACK_STATE state);
-        Debug.Log("Wind playback state: " + state);
-
-        WindEventInstance.release();
-        Debug.Log("Wind STARTED");
+        
+        //WindEventInstance.release();
+        
     }
 
-    public void InitializeCrumble(EventReference CrumbEventRef)
-    {
-        //CrumbleEventInstance = RuntimeManager.CreateInstance(CrumbEventRef);
-        //FMOD.Studio.EventInstance WindEventInstance = RuntimeManager.CreateInstance(WindEventRef);
-        //musicEventInstance = CreateEventInstance(musicEventReference);event:/Music/BackgroundMusic
-        //CrumbleEventInstance.start();
-        Debug.Log("Wind STARTED");
-    }
-
+   
     public void InitializeStartMusic(EventReference startMusicRef)
     {
         //WindEventInstance = RuntimeManager.CreateInstance(WindEventRef);
@@ -190,7 +213,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Attempted to stop a sound that isn't valid or playing.");
         }
     }
-
+   
     public void StopSound2(EventReference soundEvent)
     {
 
@@ -219,17 +242,7 @@ public class AudioManager : MonoBehaviour
 
 
 
-    public void SetWindParam(string name, float val)
-    {
-        WindEventInstance.setParameterByName(name, val);
-        Debug.Log($"SetWindParam called with {name}: {val}");
-    }
-
-    public void SetCrumbleParam(string name, float val)
-    {
-        //CrumbleEventInstance.setParameterByName(name, val);
-        Debug.Log($"SetWindParam called with {name}: {val}");
-    }
+ 
     private void OnDestroy()
     {
         CleanUp();

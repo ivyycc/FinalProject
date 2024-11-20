@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{b775d6db-94dd-45af-bdc5-b49a88509be1}">
 		<property name="name">
-			<value>Music_option1</value>
+			<value>Music_option1_part1</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -31,6 +31,9 @@
 		<relationship name="timeline">
 			<destination>{5b148fc7-d3db-4f58-a678-7601ef60d51f}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{e09ab391-4f35-42cb-9621-fdfabdf3f463}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{9dbb8f59-b047-4406-9c2f-05c5e5c56f71}">
 		<relationship name="masterBus">
@@ -50,7 +53,7 @@
 			<destination>{d3a9784c-98a4-41b1-a17d-9572e1833058}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{778e348f-a3cc-4c96-a6f5-f08e2807a19f}</destination>
+			<destination>{a233b913-9031-4665-958e-d20fbbbb79df}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{03496940-a6ac-4029-a5a8-cf702da7009e}">
@@ -77,7 +80,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{99fac066-a404-40a7-8974-e2decbb87167}">
 		<property name="pitch">
-			<value>15</value>
+			<value>4</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{389e68d6-c7d6-40d2-9360-3aba41901f66}</destination>
@@ -135,9 +138,14 @@
 		<relationship name="effects">
 			<destination>{705536be-af5d-45cb-815b-9488699663f8}</destination>
 			<destination>{edfa71eb-6472-45fb-af1d-859ba0dedb32}</destination>
+			<destination>{7050856f-74ab-41ad-95b4-fcff80abf00f}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{ec540575-4014-4350-befe-adddccd2ad53}" />
+	<object class="MixerBusPanner" id="{ec540575-4014-4350-befe-adddccd2ad53}">
+		<property name="stereoPan">
+			<value>12</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{c198f001-8a85-4ecf-b334-ea29bda85a64}" />
 	<object class="MixerBusEffectChain" id="{6d228c9e-d03e-4663-b2fc-75b990c41d7b}">
 		<relationship name="effects">
@@ -148,10 +156,15 @@
 	<object class="MixerBusFader" id="{705536be-af5d-45cb-815b-9488699663f8}" />
 	<object class="MultibandEqEffect" id="{edfa71eb-6472-45fb-af1d-859ba0dedb32}">
 		<property name="frequencyA">
-			<value>387.055267</value>
+			<value>308.171722</value>
 		</property>
 		<property name="qualityA">
-			<value>2.62068963</value>
+			<value>3.34482741</value>
+		</property>
+	</object>
+	<object class="PannerEffect" id="{7050856f-74ab-41ad-95b4-fcff80abf00f}">
+		<property name="stereoPan">
+			<value>24</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{461251a9-3399-47e5-aa7f-e45df02ee4a3}" />

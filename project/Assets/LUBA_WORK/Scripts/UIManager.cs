@@ -73,7 +73,9 @@ public class UIManager : MonoBehaviour
 
     public void UnPauseGame()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
 

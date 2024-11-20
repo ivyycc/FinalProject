@@ -17,6 +17,11 @@ TagManager:
   - Trigger3
   - Trigger4
   - Trigger5
+  - checkpoint0
+  - checkpoint1
+  - checkpoint2
+  - checkpoint3
+  - checkpoint4
   layers:
   - Default
   - TransparentFX

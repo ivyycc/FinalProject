@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -63,10 +62,8 @@ public class PlayerMovement : MonoBehaviour
     hangSlider hangSliderScript;
 
 
-    //SOUND
-    public float footstepTimer = 0f;  // Timer to track footstep intervals
-    public float footstepInterval = 0.5f;
-
+    public GameObject currentRock;
+    public Respawn respawn_script;
     private void ShakeCamera()
     {   
         if (shakeCoroutine != null)
@@ -120,12 +117,15 @@ public class PlayerMovement : MonoBehaviour
         {
             playerCamera.fieldOfView = normalFOV;
         }
+
+            
+        
     }
 
     void Update()
     {
 
-        
+
         isGrounded = controller.isGrounded;
         CheckIfFalling();
 
@@ -196,32 +196,6 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-        
-        if (isGrounded && controller.velocity.magnitude>0)
-        {
-            footstepTimer += Time.deltaTime; // Increment the timer
-
-            if (footstepTimer >= footstepInterval && isGrounded)
-            {
-                // Play footstep sound using FMOD
-                if (SceneManager.GetActiveScene().name == "BeginningScene")
-                {
-                    AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalkWood, this.transform.position);
-                }
-                else
-                {
-                    AudioManager.instance.PlayOneShot(FMODEvents.instance.playerWalk, this.transform.position);
-                }
-                
-                
-                footstepTimer = 0f; // Reset the timer
-            }
-        }
-        else
-        {
-            footstepTimer = 0f; // Reset timer if player stops moving
-        }
-
 
         if (isHanging)
         {
@@ -240,17 +214,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
-
-        
     }
 
     public void Jump()
     {
         if (isGrounded)
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
             Debug.Log("Jump while grounded is called");
-
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
         else if (isHanging)
@@ -261,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply upward jump velocity
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
+
             // Hide the web line
             webLine.positionCount = 0;
         }
@@ -285,11 +255,10 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
-
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.hitRock, this.transform.position);
             }
             else if (hit.collider.CompareTag(shakyRockTag))
             {
+                maxHangTime = 3f;
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
                 isWebShooting = true;
@@ -299,10 +268,14 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
+                currentRock = hit.collider.transform.parent.gameObject;
+
+
             }
             else
             {
                 Debug.Log("Missed! Object is not climbable.");
+                
             }
         }
         else
@@ -372,8 +345,10 @@ public class PlayerMovement : MonoBehaviour
         if (currentHangTime >= maxHangTime)
         {
             Debug.Log("Max hang time exceeded, falling!");
+            
             StopWeb(); // Call StopWeb to make the player fall
         }
+        
 
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
@@ -388,6 +363,11 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
+        if (currentRock != null)
+        {
+            currentRock.SetActive(false);
+            currentRock = null;
+        }
         isWebShooting = false;
         isHanging = false;
 
@@ -397,6 +377,8 @@ public class PlayerMovement : MonoBehaviour
         currentHangTime = 0f;
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
+
+        
     }
 
     // Handle zoom logic

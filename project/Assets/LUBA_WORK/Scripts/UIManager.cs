@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject Pause_panel;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
     {
         displayUI();
         Pause();
+
     }
 
     void displayUI()
@@ -77,5 +79,7 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+
 }
 

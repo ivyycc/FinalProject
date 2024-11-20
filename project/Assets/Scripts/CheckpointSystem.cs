@@ -5,7 +5,9 @@ using UnityEngine;
 public class CheckpointSystem : MonoBehaviour
 {
     public int checkpointIndex; // Index of this checkpoint, assigned in the Inspector or dynamically
-   // public bool isActivated = false; // Ensure each checkpoint can only be activated once
+                                // public bool isActivated = false; // Ensure each checkpoint can only be activated once
+
+    public List<GameObject> TreeGroups = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +26,26 @@ public class CheckpointSystem : MonoBehaviour
                 }
                 
             }
+
+            if(this.gameObject.tag == "checkpoint0")
+            {
+                TreeGroups[0].SetActive(true);
+            }
+            if (this.gameObject.tag == "checkpoint1")
+            {
+                TreeGroups[1].SetActive(true);
+            }
+            if (this.gameObject.tag == "checkpoint2")
+            {
+                TreeGroups[2].SetActive(true);
+            }
+            if (this.gameObject.tag == "checkpoint3")
+            {
+                TreeGroups[3].SetActive(true);
+            }
+           
         }
+
+        
     }
 }

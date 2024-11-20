@@ -11,6 +11,8 @@ public class CollectObject : MonoBehaviour
     public float interactDistance = 5f; // Maximum interaction distance
     public GameObject playerCamera;        // Camera from which the raycast will originate
     public string interactableTag = "Interactable"; // Tag to identify interactable objects
+    public int numOfObjectsInteractedWith = 0;
+    public bool isInInteractRange = false;
 
     private void Start()
     {
@@ -39,7 +41,7 @@ public class CollectObject : MonoBehaviour
             {
                 Debug.Log($"You interacted with {hit.collider.gameObject.name}");
                 hit.collider.GetComponent<Renderer>().material.color = Color.green;
-
+                isInInteractRange = true;
 
 
                 // Check for interaction input (e.g., pressing "E")
@@ -47,6 +49,8 @@ public class CollectObject : MonoBehaviour
                 {
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.pickUp, this.transform.position);
                     hit.collider.gameObject.SetActive(false);
+                    numOfObjectsInteractedWith++;
+                    isInInteractRange = false;
                 }
                 // Add interaction logic here
                 // Example: Change color, play animation, etc.
@@ -55,8 +59,18 @@ public class CollectObject : MonoBehaviour
             else
             {
                 Debug.Log("not interactable: " + hit.collider.tag);
+                isInInteractRange = false;
             }
             
+        }
+    }
+
+
+    public void NumOfInteractedObjects()
+    {
+        if( numOfObjectsInteractedWith >=3 )
+        {
+
         }
     }
 

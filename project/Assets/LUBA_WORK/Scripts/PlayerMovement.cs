@@ -61,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
     hangSlider hangSliderScript;
 
+    //HandLogic
+
+    public bool isLeftHand;
+    public bool isrightHand;
+
 
     private void ShakeCamera()
     {   
@@ -133,11 +138,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
             webColor.SetColor("_Color", Color.blue);
+            isLeftHand = false;
+            isrightHand = true;
             ShootWeb();
         }
         else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
             webColor.SetColor("_Color", Color.red);
+            isLeftHand = true;
+            isrightHand = false;
             ShootWeb();
         }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ClimbHandHandler : MonoBehaviour
 {
     public LineRenderer lineRenderer; 
-    public GameObject handPrefab; // The hand object prefab to instantiate
+    public GameObject handPrefab; // The hand object prefab to instantiatez
     private GameObject instantiatedHand; // Reference to the instantiated hand object
 
     void Update()

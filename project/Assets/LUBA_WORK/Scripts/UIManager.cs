@@ -71,6 +71,9 @@ public class UIManager : MonoBehaviour
 
     }
 
-
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f; 
+    }
 }
 

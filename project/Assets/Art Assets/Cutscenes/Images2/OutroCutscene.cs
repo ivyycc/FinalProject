@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
 
-public class IntroCutscene: MonoBehaviour
+public class OutroCutscene: MonoBehaviour
 {
     public Image[] images; 
     public Button nextButton; 
@@ -104,7 +104,7 @@ public class IntroCutscene: MonoBehaviour
         yield return FadeToBlack();
 
        
-        SceneManager.LoadScene("BeginningScene");
+        SceneManager.LoadScene("MenuUIScene");
     }
 
    

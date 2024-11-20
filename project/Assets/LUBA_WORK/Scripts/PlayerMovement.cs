@@ -32,7 +32,18 @@ public class PlayerMovement : MonoBehaviour
     public float maxHangDistance = 9f; // Maximum distance allowed while hanging
     public float handDistance = 1.5f;
 
-    
+
+    // Hand Prefabs
+  
+
+    // Reference to the current instantiated hand
+    private GameObject currentHandInstance;
+
+    // Offset for hand placement
+    public float handOffset = 0.5f; // Distance to offset the hand closer to the web line
+
+
+
 
     // Player Stats
     public int playerHealth;
@@ -65,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isLeftHand;
     public bool isrightHand;
+
+    public GameObject leftHand;
+    public GameObject rightHand;
+
 
 
     private void ShakeCamera()
@@ -103,6 +118,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        leftHand.SetActive(false);
+        rightHand.SetActive(false);
         controller = GetComponent<CharacterController>();
         hangSliderScript = GetComponent<hangSlider>();
 
@@ -137,6 +154,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
+            rightHand.SetActive(true);
+            
             webColor.SetColor("_Color", Color.blue);
             isLeftHand = false;
             isrightHand = true;
@@ -144,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
+            leftHand.SetActive(true);
             webColor.SetColor("_Color", Color.red);
             isLeftHand = true;
             isrightHand = false;
@@ -259,18 +279,8 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
-            }
-            else if (hit.collider.CompareTag(shakyRockTag))
-            {
-                Debug.Log("Hit a climbable object!");
-                webTarget = hit.point;
-                isWebShooting = true;
 
-                webLine.positionCount = 2;
-                webLine.SetPosition(0, transform.position);
-                webLine.SetPosition(1, webTarget);
-
-                useGravity = false;
+               
             }
             else
             {
@@ -282,6 +292,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Missed! No object hit within range.");
         }
     }
+
+    
+
+
+
 
     void PullPlayerToTarget()
     {
@@ -360,6 +375,8 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
+        rightHand.SetActive(false);
+        leftHand.SetActive(false);
         isWebShooting = false;
         isHanging = false;
 
@@ -369,8 +386,12 @@ public class PlayerMovement : MonoBehaviour
         currentHangTime = 0f;
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
+
+        // Destroy the current hand instance
+        if (currentHandInstance != null) Destroy(currentHandInstance);
     }
 
+
     // Handle zoom logic
-    
+
 }

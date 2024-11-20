@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Handle zoom input
-        HandleZoom();
+       // HandleZoom();
 
        
     }
@@ -363,17 +363,5 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Handle zoom logic
-    void HandleZoom()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            isZoomed = !isZoomed;
-        }
-
-        float targetFOV = isZoomed ? zoomFOV : normalFOV;
-        if (playerCamera != null)
-        {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
-        }
-    }
+    
 }

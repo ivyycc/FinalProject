@@ -28,7 +28,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool triggerDialogue;
 
-    private FMOD.Studio.EventInstance radioInstance;
+    private FMOD.Studio.EventInstance radioInstance1;
+    private FMOD.Studio.EventInstance radioInstance2;
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         speakers = new Queue<string>();
         dialoguePanel.SetActive(false);
         triggerDialogue = true;
-        radioInstance = AudioManager.instance.InitializeRadio(FMODEvents.instance.RadioStatic, this.transform.position);
+        radioInstance1 = AudioManager.instance.InitializeRadio(FMODEvents.instance.RadioStatic, this.transform.position);
     }
 
     void Update()
@@ -49,7 +50,8 @@ public class DialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
         {
-            AudioManager.instance.StopSound(radioInstance);
+            AudioManager.instance.StopSound(radioInstance1);
+            AudioManager.instance.StopSound(radioInstance2);
             EndDialogue();
             Debug.Log("Exit Dialogue");
         }
@@ -65,8 +67,13 @@ public class DialogueManager : MonoBehaviour
         else
         {
             StartDialogue(dialogues[currentDialogueIndex].speakerName, dialogues[currentDialogueIndex].lines);
+            if(currentDialogueIndex > 0)
+            {
+                radioInstance2 = AudioManager.instance.InitializeRadio(FMODEvents.instance.RadioStaticHalf, this.transform.position);
+            }
+
             currentDialogueIndex = (currentDialogueIndex + 1) % dialogues.Length;
-        }
+            }
     }
 
     public void StartDialogue(string speakerName, string[] lines)

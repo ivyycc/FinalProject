@@ -60,7 +60,8 @@ public class AudioManager : MonoBehaviour
        
 
         FMODUnity.RuntimeManager.LoadBank("Music", true); // Replace "Master" with your actual bank name
-        
+
+        FMODUnity.RuntimeManager.LoadBank("SFX", true); // Replace "Master" with your actual bank name
 
         musicBus = RuntimeManager.GetBus("bus:/Music");
         AmbienceBus = RuntimeManager.GetBus("bus:/Ambience");

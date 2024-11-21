@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
     public string climbableTag = "Climbable";
     string shakyRockTag = "ShakyRock";
+
+    public bool isShakyRock;
+    public bool isClimbable;
     public LineRenderer webLine;
     private bool isWebShooting = false; // Tracks if web is being shot
     private Vector3 webTarget; // The point where the web touched the wall
@@ -280,8 +283,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, webRange))
         {
-            if (hit.collider.CompareTag(climbableTag)|| hit.collider.CompareTag(shakyRockTag))
+            if (hit.collider.CompareTag(climbableTag))
             {
+                isClimbable = true;
+                isShakyRock = false;
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
                 isWebShooting = true;
@@ -293,6 +298,21 @@ public class PlayerMovement : MonoBehaviour
                 useGravity = false;
 
                
+            }
+            else if (hit.collider.CompareTag(shakyRockTag))
+            {
+                isClimbable = false;
+                isShakyRock = true;
+                Debug.Log("SHAKY ROCK HIT");
+                webTarget = hit.point;
+                isWebShooting = true;
+
+                webLine.positionCount = 2;
+                webLine.SetPosition(0, transform.position);
+                webLine.SetPosition(1, webTarget);
+
+                useGravity = false;
+
             }
             else
             {

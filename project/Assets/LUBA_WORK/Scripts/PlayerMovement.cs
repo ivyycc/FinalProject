@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 playerCamera.transform.localPosition = new Vector3(x, y, originalPosition.z); // Apply shake
 
                 elapsed += Time.deltaTime; // Increment elapsed time
-                yield return null; // Wait for the next frame
+                yield return null; // Wait for the next 'fr'ame
             }
 
             playerCamera.transform.localPosition = originalPosition; // Reset to original position
@@ -381,6 +381,8 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+
+
     // Handle zoom logic
-    
+
 }

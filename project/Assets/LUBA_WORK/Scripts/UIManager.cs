@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f; // Freeze the game
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1f; // UnFreeze the game
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
         }
     }
 

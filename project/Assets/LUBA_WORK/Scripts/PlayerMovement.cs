@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject currentRock;
     public Respawn respawn_script;
+    private FMOD.Studio.EventInstance rockShakyInstance;
 
     //SOUND
     public float footstepTimer = 0f;  // Timer to track footstep intervals
@@ -301,7 +302,7 @@ public class PlayerMovement : MonoBehaviour
                 useGravity = false;
                 currentRock = hit.collider.transform.parent.gameObject;
 
-
+                rockShakyInstance = AudioManager.instance.InitializeRadio(FMODEvents.instance.hitShakyRock, currentRock.transform.position);
             }
             else
             {
@@ -397,6 +398,8 @@ public class PlayerMovement : MonoBehaviour
         if (currentRock != null)
         {
             currentRock.SetActive(false);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.ShakyRockBreak, currentRock.transform.position);
+            AudioManager.instance.StopSound(rockShakyInstance);
             currentRock = null;
         }
         isWebShooting = false;

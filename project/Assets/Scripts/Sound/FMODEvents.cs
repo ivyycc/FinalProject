@@ -7,9 +7,9 @@ public class FMODEvents : MonoBehaviour
 {
 
     [field: Header("UI SFX")]
-    [field: SerializeField] public EventReference startScene { get; private set; }
-    [field: SerializeField] public EventReference click { get; private set; }
-    [field: SerializeField] public EventReference quit { get; private set; }
+    [field: SerializeField] public EventReference PlayGame { get; private set; }
+    [field: SerializeField] public EventReference Click { get; private set; }
+    [field: SerializeField] public EventReference Back { get; private set; }
 
     [field: Header("All SFX")]
     [field: SerializeField] public EventReference playerWalk { get; private set; }
@@ -20,6 +20,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference RadioStaticHalf { get; private set; }
     [field: SerializeField] public EventReference Alarm { get; private set; }
     [field: SerializeField] public EventReference hitRock { get; private set; }
+    [field: SerializeField] public EventReference hitShakyRock { get; private set; }
+    [field: SerializeField] public EventReference ShakyRockBreak { get; private set; }
 
     [field: Header("Music")]
     [field: SerializeField] public EventReference Music { get; private set; }

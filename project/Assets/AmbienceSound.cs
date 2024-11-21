@@ -58,7 +58,7 @@ public class AmbienceSound : MonoBehaviour
 
 
 
-    void CheckIfEventIs3D(EventReference eventRef)
+    /*void CheckIfEventIs3D(EventReference eventRef)
     {
         // Create an Event Description
         EventDescription eventDescription;
@@ -82,5 +82,5 @@ public class AmbienceSound : MonoBehaviour
         {
             Debug.LogError("Invalid FMOD Event Description.");
         }
-    }
+    }*/
 }

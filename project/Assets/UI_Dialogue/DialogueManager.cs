@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour
         {
             AudioManager.instance.StopSound(radioInstance1);
             AudioManager.instance.StopSound(radioInstance2);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
             EndDialogue();
             Debug.Log("Exit Dialogue");
         }
@@ -62,6 +63,7 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))//dialoguePanel.activeSelf
         {
             dialoguePanel.SetActive(false);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
             Debug.Log("Exit Dialogue");
         }
         else

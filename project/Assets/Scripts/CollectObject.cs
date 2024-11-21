@@ -14,16 +14,17 @@ public class CollectObject : MonoBehaviour
     public int numOfObjectsInteractedWith = 0;
     public bool isInInteractRange = false;
 
+    private FMOD.Studio.EventInstance AlarmInstance;
     private void Start()
     {
-        AudioManager.instance.InitializeWind(FMODEvents.instance.Alarm, this.transform.position);
+        AlarmInstance = AudioManager.instance.InitializeRadio(FMODEvents.instance.Alarm, this.transform.position);
     }
 
     void Update()
     {
         
         InteractWithObject();
-        
+        NumOfInteractedObjects();
     }
 
     void InteractWithObject()
@@ -70,7 +71,7 @@ public class CollectObject : MonoBehaviour
     {
         if( numOfObjectsInteractedWith >=3 )
         {
-
+            AudioManager.instance.StopSound(AlarmInstance);
         }
     }
 

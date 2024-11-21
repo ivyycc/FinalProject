@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{fcf3a00c-be7d-450f-b667-bdf20b5bbb5a}">
+		<property name="assetPath">
+			<value>earth-rumble-6953.mp3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.1445578231292517</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1391b35f-ba57-43aa-926b-029bc9815bc4}</destination>
+		</relationship>
+	</object>
+</objects>

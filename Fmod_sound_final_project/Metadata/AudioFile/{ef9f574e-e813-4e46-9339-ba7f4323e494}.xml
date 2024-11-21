@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ef9f574e-e813-4e46-9339-ba7f4323e494}">
+		<property name="assetPath">
+			<value>ui-back-sound-100590.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.74399999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1391b35f-ba57-43aa-926b-029bc9815bc4}</destination>
+		</relationship>
+	</object>
+</objects>

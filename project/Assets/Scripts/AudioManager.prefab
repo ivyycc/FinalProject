@@ -44,27 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682f107b515564c4d9c8c486cebd722c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <startScene>k__BackingField:
+  <PlayGame>k__BackingField:
     Guid:
-      Data1: -1717483192
-      Data2: 1192193714
-      Data3: -427989348
-      Data4: -1912316324
-    Path: event:/Alarm
-  <click>k__BackingField:
+      Data1: 763486074
+      Data2: 1204708567
+      Data3: -1488947795
+      Data4: 437471047
+    Path: event:/Play
+  <Click>k__BackingField:
     Guid:
-      Data1: -1717483192
-      Data2: 1192193714
-      Data3: -427989348
-      Data4: -1912316324
-    Path: event:/Alarm
-  <quit>k__BackingField:
+      Data1: -1036365993
+      Data2: 1313923659
+      Data3: -313658697
+      Data4: 10783376
+    Path: event:/ClickForward
+  <Back>k__BackingField:
     Guid:
-      Data1: -1717483192
-      Data2: 1192193714
-      Data3: -427989348
-      Data4: -1912316324
-    Path: event:/Alarm
+      Data1: -676840149
+      Data2: 1139060284
+      Data3: -675935608
+      Data4: 1469193055
+    Path: event:/Back
   <playerWalk>k__BackingField:
     Guid:
       Data1: 104050680
@@ -95,18 +95,18 @@ MonoBehaviour:
     Path: event:/PickUp
   <RadioStatic>k__BackingField:
     Guid:
-      Data1: -1250931319
-      Data2: 1332313144
-      Data3: 2134837693
-      Data4: 1258767599
-    Path: event:/RadioStatic1
+      Data1: 350661921
+      Data2: 1219482692
+      Data3: -552792138
+      Data4: 2085853192
+    Path: event:/RadioStatic2D
   <RadioStaticHalf>k__BackingField:
     Guid:
-      Data1: -182872596
-      Data2: 1292214114
-      Data3: 365030590
-      Data4: -1760989411
-    Path: event:/RadioStatic2
+      Data1: -1628673968
+      Data2: 1146353618
+      Data3: 732164768
+      Data4: 1775339
+    Path: event:/RadioStatic2_2D
   <Alarm>k__BackingField:
     Guid:
       Data1: -1717483192
@@ -121,20 +121,41 @@ MonoBehaviour:
       Data3: -395036285
       Data4: 2057996560
     Path: event:/LatchOn
+  <hitShakyRock>k__BackingField:
+    Guid:
+      Data1: 1828987116
+      Data2: 1140658706
+      Data3: 1041660045
+      Data4: 808975216
+    Path: event:/Rockshake_2D
+  <ShakyRockBreak>k__BackingField:
+    Guid:
+      Data1: 1344198057
+      Data2: 1178613315
+      Data3: 260992387
+      Data4: 405482131
+    Path: event:/RockBreak_2D
   <Music>k__BackingField:
     Guid:
-      Data1: 981405779
-      Data2: 1113245325
-      Data3: 539495099
-      Data4: 1951134215
-    Path: event:/Rain
+      Data1: -1217014053
+      Data2: 1169134813
+      Data3: -1699428931
+      Data4: -509915000
+    Path: event:/Music_option1_part1
   <Music2>k__BackingField:
     Guid:
-      Data1: -182872596
-      Data2: 1292214114
-      Data3: 365030590
-      Data4: -1760989411
-    Path: event:/RadioStatic2
+      Data1: 571297667
+      Data2: 1318258165
+      Data3: -1432332612
+      Data4: 31808139
+    Path: event:/Music_option1_part2
+  <Music3>k__BackingField:
+    Guid:
+      Data1: 489743179
+      Data2: 1180873791
+      Data3: -419018578
+      Data4: -506486293
+    Path: event:/Music_option1_part3
   <Rain>k__BackingField:
     Guid:
       Data1: 981405779

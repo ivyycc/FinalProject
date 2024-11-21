@@ -163,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
             //rightHand.SetActive(true);
             
             webColor.SetColor("_Color", Color.blue);
+            webLine.material = webColor;
             isLeftHand = false;
             isrightHand = true;
             ShootWeb();
@@ -171,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         {
            // leftHand.SetActive(true);
             webColor.SetColor("_Color", Color.red);
+            webLine.material = webColor;
             isLeftHand = true;
             isrightHand = false;
             ShootWeb();

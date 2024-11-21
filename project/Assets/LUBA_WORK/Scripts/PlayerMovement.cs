@@ -80,12 +80,12 @@ public class PlayerMovement : MonoBehaviour
     public bool isLeftHand;
     public bool isrightHand;
 
-    public GameObject leftHand;
-    public GameObject rightHand;
+    //public GameObject leftHand;
+  //  public GameObject rightHand;
 
-
-    public Rigidbody leftHandRig;
-    public Rigidbody rightHandRig;
+//
+    //public Rigidbody leftHandRig;
+    //public Rigidbody rightHandRig;
 
 
     private void ShakeCamera()
@@ -124,8 +124,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        leftHand.SetActive(false);
-        rightHand.SetActive(false);
+       // leftHand.SetActive(false);
+        //rightHand.SetActive(false);
         controller = GetComponent<CharacterController>();
         hangSliderScript = GetComponent<hangSlider>();
 
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
-            rightHand.SetActive(true);
+            //rightHand.SetActive(true);
             
             webColor.SetColor("_Color", Color.blue);
             isLeftHand = false;
@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
-            leftHand.SetActive(true);
+           // leftHand.SetActive(true);
             webColor.SetColor("_Color", Color.red);
             isLeftHand = true;
             isrightHand = false;
@@ -272,11 +272,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (isrightHand)
         {
-            rightHandRig.constraints = RigidbodyConstraints.FreezePosition;
+            //rightHandRig.constraints = RigidbodyConstraints.FreezePosition;
         }
         else if(isLeftHand)
         {
-            leftHandRig.constraints = RigidbodyConstraints.FreezePosition;
+            //leftHandRig.constraints = RigidbodyConstraints.FreezePosition;
         }
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
@@ -407,10 +407,10 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
-        rightHand.SetActive(false);
-        leftHand.SetActive(false);
-        leftHandRig.constraints = RigidbodyConstraints.None;
-        rightHandRig.constraints = RigidbodyConstraints.None;
+        //rightHand.SetActive(false);
+        //leftHand.SetActive(false);
+        //leftHandRig.constraints = RigidbodyConstraints.None;
+        //rightHandRig.constraints = RigidbodyConstraints.None;
         isWebShooting = false;
         isHanging = false;
 

@@ -137,7 +137,8 @@ public class PlayerMovement : MonoBehaviour
             webLine.positionCount = 0;
             webLine.startWidth = 0.1f; // Adjust this value to set the start width
             webLine.endWidth = 0.1f;   // Adjust this value to set the end width
-
+            webLine.material = new Material(Shader.Find("Sprites/Default"));
+            webLine.useWorldSpace = true;
         }
 
         // Initialize the camera's field of view to normal
@@ -165,22 +166,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
-            //rightHand.SetActive(true);
-            
-            webColor.SetColor("_Color", Color.blue);
+            webColor.SetColor("_Color", Color.red);
             webLine.material = webColor;
+            //rightHand.SetActive(true);
+
+            // webColor.SetColor("_Color", Color.blue);
+            // webLine.material = webColor;
             isLeftHand = false;
             isrightHand = true;
             ShootWeb();
+            Debug.Log("Left click color set to red");
         }
         else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
-           // leftHand.SetActive(true);
-            webColor.SetColor("_Color", Color.red);
-            webLine.material = webColor;
+            webLine.startColor = Color.blue;
+            webLine.endColor = Color.blue;
+            // leftHand.SetActive(true);
+            // webColor.SetColor("_Color", Color.red);
+            //webLine.material = webColor;
             isLeftHand = true;
             isrightHand = false;
             ShootWeb();
+            Debug.Log("Right click color set to blue");
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isHanging)
@@ -279,10 +286,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (isrightHand)
         {
+            webLine.startColor = Color.blue;
+            webLine.endColor = Color.blue;
             //rightHandRig.constraints = RigidbodyConstraints.FreezePosition;
         }
         else if(isLeftHand)
         {
+            webLine.startColor = Color.red;
+            webLine.endColor = Color.red;
             //leftHandRig.constraints = RigidbodyConstraints.FreezePosition;
         }
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -436,7 +447,12 @@ public class PlayerMovement : MonoBehaviour
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
 
-        
+        if (webLine != null)
+        {
+            webLine.positionCount = 0;
+            // Reset material if needed
+            webLine.material = new Material(Shader.Find("Sprites/Default"));
+        }
     }
 
 

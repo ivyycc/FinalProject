@@ -79,9 +79,10 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{99fac066-a404-40a7-8974-e2decbb87167}">
-		<property name="pitch">
-			<value>4</value>
-		</property>
+		<relationship name="modulators">
+			<destination>{ca098392-71f3-43e1-b138-dbc157abaf59}</destination>
+			<destination>{1a2d4b71-d2eb-45b9-984f-8df649014dad}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{389e68d6-c7d6-40d2-9360-3aba41901f66}</destination>
 		</relationship>
@@ -134,16 +135,47 @@
 			<destination>{0cdec279-056a-4a7e-99c0-9761710772db}</destination>
 		</relationship>
 	</object>
+	<object class="RandomizerModulator" id="{ca098392-71f3-43e1-b138-dbc157abaf59}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>17.5</value>
+		</property>
+	</object>
+	<object class="ADSRModulator" id="{1a2d4b71-d2eb-45b9-984f-8df649014dad}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>500</value>
+		</property>
+		<property name="holdTime">
+			<value>0.5</value>
+		</property>
+		<property name="decayTime">
+			<value>200</value>
+		</property>
+		<property name="releaseTime">
+			<value>900</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{389e68d6-c7d6-40d2-9360-3aba41901f66}">
 		<relationship name="effects">
 			<destination>{705536be-af5d-45cb-815b-9488699663f8}</destination>
-			<destination>{edfa71eb-6472-45fb-af1d-859ba0dedb32}</destination>
-			<destination>{7050856f-74ab-41ad-95b4-fcff80abf00f}</destination>
+			<destination>{e0e96504-6178-44f3-8048-92e82e2e6bf7}</destination>
+			<destination>{8a13aae5-be4c-4563-b3e0-8ef734104c09}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ec540575-4014-4350-befe-adddccd2ad53}">
 		<property name="stereoPan">
-			<value>12</value>
+			<value>14</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{c198f001-8a85-4ecf-b334-ea29bda85a64}" />
@@ -154,17 +186,35 @@
 	</object>
 	<object class="MixerBusPanner" id="{6fba457b-20b0-4932-b863-b5447c3746e9}" />
 	<object class="MixerBusFader" id="{705536be-af5d-45cb-815b-9488699663f8}" />
-	<object class="MultibandEqEffect" id="{edfa71eb-6472-45fb-af1d-859ba0dedb32}">
+	<object class="MultibandEqEffect" id="{e0e96504-6178-44f3-8048-92e82e2e6bf7}">
 		<property name="frequencyA">
-			<value>308.171722</value>
+			<value>4370.81787</value>
 		</property>
 		<property name="qualityA">
-			<value>3.34482741</value>
+			<value>4.37931061</value>
 		</property>
 	</object>
-	<object class="PannerEffect" id="{7050856f-74ab-41ad-95b4-fcff80abf00f}">
-		<property name="stereoPan">
-			<value>24</value>
+	<object class="SFXReverbEffect" id="{8a13aae5-be4c-4563-b3e0-8ef734104c09}">
+		<property name="decayTime">
+			<value>1000</value>
+		</property>
+		<property name="earlyDelay">
+			<value>11</value>
+		</property>
+		<property name="lateDelay">
+			<value>20.5</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>44.5</value>
+		</property>
+		<property name="lowShelfFrequency">
+			<value>220</value>
+		</property>
+		<property name="highCut">
+			<value>4200</value>
+		</property>
+		<property name="wetLevel">
+			<value>-3</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{461251a9-3399-47e5-aa7f-e45df02ee4a3}" />

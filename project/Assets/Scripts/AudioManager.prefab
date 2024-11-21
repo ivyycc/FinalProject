@@ -158,11 +158,11 @@ MonoBehaviour:
     Path: event:/Music_option1_part3
   <MainMenuMusic>k__BackingField:
     Guid:
-      Data1: -54157397
-      Data2: 1252622564
-      Data3: 1264164259
-      Data4: 248796353
-    Path: event:/MainMenuMusic
+      Data1: -1217014053
+      Data2: 1169134813
+      Data3: -1699428931
+      Data4: -509915000
+    Path: event:/Music_option1_part1
   <CutScenesMusic>k__BackingField:
     Guid:
       Data1: -54157397

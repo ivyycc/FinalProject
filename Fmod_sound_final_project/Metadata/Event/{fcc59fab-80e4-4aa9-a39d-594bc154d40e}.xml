@@ -79,8 +79,11 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c135e9d0-e932-4602-abc4-e469aac6980e}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="pitch">
-			<value>4</value>
+			<value>11</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{22d64faf-0c61-4ad0-8d17-244152ff8710}</destination>
@@ -138,6 +141,8 @@
 		<relationship name="effects">
 			<destination>{79d4b1f0-4a19-44d9-a63e-19b91b1f4338}</destination>
 			<destination>{044a7c0c-dfc9-470a-9670-63e1870104d7}</destination>
+			<destination>{18c589bd-f3f1-4453-82d8-fa8aa2e8280f}</destination>
+			<destination>{4fde3440-ebae-4fbb-8b98-380cc067eb30}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{4a1426b2-5d40-4ee5-93c0-c4337488bfd8}" />
@@ -149,6 +154,47 @@
 	</object>
 	<object class="MixerBusPanner" id="{b8658b69-858a-4767-ae40-a1fffd5224e6}" />
 	<object class="MixerBusFader" id="{79d4b1f0-4a19-44d9-a63e-19b91b1f4338}" />
-	<object class="MultibandEqEffect" id="{044a7c0c-dfc9-470a-9670-63e1870104d7}" />
+	<object class="MultibandEqEffect" id="{044a7c0c-dfc9-470a-9670-63e1870104d7}">
+		<property name="frequencyA">
+			<value>506.698517</value>
+		</property>
+		<property name="qualityA">
+			<value>1.55413795</value>
+		</property>
+	</object>
+	<object class="LowpassEffect" id="{18c589bd-f3f1-4453-82d8-fa8aa2e8280f}">
+		<property name="cutoff">
+			<value>22000</value>
+		</property>
+		<property name="resonance">
+			<value>1.5999999</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{4fde3440-ebae-4fbb-8b98-380cc067eb30}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
+		<property name="decayTime">
+			<value>20000</value>
+		</property>
+		<property name="earlyDelay">
+			<value>24.5</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>75</value>
+		</property>
+		<property name="lowShelfFrequency">
+			<value>670</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>9.5</value>
+		</property>
+		<property name="highCut">
+			<value>8000</value>
+		</property>
+		<property name="wetLevel">
+			<value>10</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{4729ff00-809e-4624-a8cb-b53c5a9f4882}" />
 </objects>

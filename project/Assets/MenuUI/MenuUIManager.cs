@@ -1,35 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
-
+using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 public class MenuUIManager : MonoBehaviour
 {
     public GameObject mainMenuPanel; 
     public GameObject settingsMenuPanel; 
-    public GameObject pauseMenuPanel;    
+    public GameObject pauseMenuPanel;
 
-   
+    private FMOD.Studio.EventInstance MusicInstance;
     void Start()
     {
        
         mainMenuPanel.SetActive(true);
         settingsMenuPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            MusicInstance = AudioManager.instance.InitializeRadio(FMODEvents.instance.MainMenuMusic, this.transform.position);
+            Debug.Log("MUSIC PLAYING");
+        }
     }
 
    
     void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            AudioManager.instance.InitializeWind(FMODEvents.instance.MainMenuMusic, this.transform.position);
-        }
+        
         
     }
     public void StopMusic()
     {
-        AudioManager.instance.StopSound2();
+        AudioManager.instance.StopSound(MusicInstance);
+        Destroy(GameObject.Find("AudioManager"));
     }
 
     public void OnPlayButtonPressed()
@@ -81,4 +86,5 @@ public class MenuUIManager : MonoBehaviour
         AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         pauseMenuPanel.SetActive(false);
     }
+
 }

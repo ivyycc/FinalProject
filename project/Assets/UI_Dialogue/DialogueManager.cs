@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
     //public Button next;
-   
+
     [System.Serializable]
     public class Dialogue
     {
@@ -90,7 +90,25 @@ public class DialogueManager : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         string speaker = speakers.Dequeue();
+
+
         headingText.text = speaker;
+
+       
+        if (speaker == "Randy")
+        {
+            headingText.color = new Color(0.1882f, 1.0f, 0.5843f);
+
+        }
+        else if (speaker == "Ranger")
+        {
+            headingText.color = new Color(1f, 0.753f, 0f); 
+        }
+        else
+        {
+            headingText.color = Color.white; 
+        }
+
         dialogueText.text = sentence;
     }
 
@@ -101,7 +119,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Trigger1")
+        if (collision.gameObject.tag == "Trigger1")
         {
             triggerDialogue = true;
             collision.enabled = false;

@@ -88,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
     //public Rigidbody rightHandRig;
 
 
+    public GameObject currentRock;
+    public Respawn respawn_script;
     private void ShakeCamera()
     {   
         if (shakeCoroutine != null)
@@ -113,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 playerCamera.transform.localPosition = new Vector3(x, y, originalPosition.z); // Apply shake
 
                 elapsed += Time.deltaTime; // Increment elapsed time
-                yield return null; // Wait for the next frame
+                yield return null; // Wait for the next 'fr'ame
             }
 
             playerCamera.transform.localPosition = originalPosition; // Reset to original position
@@ -143,12 +145,15 @@ public class PlayerMovement : MonoBehaviour
         {
             playerCamera.fieldOfView = normalFOV;
         }
+
+            
+        
     }
 
     void Update()
     {
 
-        
+
         isGrounded = controller.isGrounded;
         CheckIfFalling();
 
@@ -306,6 +311,8 @@ public class PlayerMovement : MonoBehaviour
                 isClimbable = false;
                 isShakyRock = true;
                 Debug.Log("SHAKY ROCK HIT");
+                maxHangTime = 3f;
+                Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
                 isWebShooting = true;
 
@@ -314,11 +321,14 @@ public class PlayerMovement : MonoBehaviour
                 webLine.SetPosition(1, webTarget);
 
                 useGravity = false;
+                currentRock = hit.collider.transform.parent.gameObject;
+
 
             }
             else
             {
                 Debug.Log("Missed! Object is not climbable.");
+                
             }
         }
         else
@@ -393,8 +403,10 @@ public class PlayerMovement : MonoBehaviour
         if (currentHangTime >= maxHangTime)
         {
             Debug.Log("Max hang time exceeded, falling!");
+            
             StopWeb(); // Call StopWeb to make the player fall
         }
+        
 
         // Add movement while hanging logic here
         if (Input.GetKey(KeyCode.W))
@@ -409,10 +421,11 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
-        //rightHand.SetActive(false);
-        //leftHand.SetActive(false);
-        //leftHandRig.constraints = RigidbodyConstraints.None;
-        //rightHandRig.constraints = RigidbodyConstraints.None;
+        if (currentRock != null)
+        {
+            currentRock.SetActive(false);
+            currentRock = null;
+        }
         isWebShooting = false;
         isHanging = false;
 
@@ -423,9 +436,9 @@ public class PlayerMovement : MonoBehaviour
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
 
-        // Destroy the current hand instance
-        if (currentHandInstance != null) Destroy(currentHandInstance);
+        
     }
+
 
 
     // Handle zoom logic

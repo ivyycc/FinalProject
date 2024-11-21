@@ -8,7 +8,7 @@ public class RainBehaviour : MonoBehaviour
     public Material darkSkybox;
     public Light lightningLight;
     public Light generalLight;
-    //private Material originalSkybox;
+    private Material originalSkybox;
     public float rain_intensity, wind_intensity, generalLight_intensity, waitTime1, waitTime2, playerSpeed, playerPullSpeed, fog_density, rotation_y;
     public bool canTriggerLightning;
     public PlayerMovement playerMove;
@@ -16,10 +16,11 @@ public class RainBehaviour : MonoBehaviour
     void Start()
     {
 
-        //originalSkybox = RenderSettings.skybox;
+        darkSkybox = RenderSettings.skybox;
         lightningLight.intensity = 0;
-        generalLight.intensity = 1;
+        generalLight.intensity = 0;
         canTriggerLightning = true;
+        RenderSettings.fog = true;
     }
 
     

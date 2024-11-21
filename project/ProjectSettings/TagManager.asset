@@ -22,6 +22,15 @@ TagManager:
   - checkpoint2
   - checkpoint3
   - checkpoint4
+  - Green
+  - Orange
+  - Red
+  - Yellow
+  - Part1
+  - Part2
+  - Part3
+  - Part4
+  - checkpoint5
   layers:
   - Default
   - TransparentFX

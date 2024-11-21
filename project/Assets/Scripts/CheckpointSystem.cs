@@ -9,6 +9,8 @@ public class CheckpointSystem : MonoBehaviour
 
     public List<GameObject> TreeGroups = new List<GameObject>();
 
+    public int TreeIntensity;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -30,18 +32,22 @@ public class CheckpointSystem : MonoBehaviour
             if(this.gameObject.tag == "checkpoint0")
             {
                 TreeGroups[0].SetActive(true);
+                //TreeIntensity = 0;
             }
             if (this.gameObject.tag == "checkpoint1")
             {
                 TreeGroups[1].SetActive(true);
+                //TreeIntensity = 1;
             }
             if (this.gameObject.tag == "checkpoint2")
             {
                 TreeGroups[2].SetActive(true);
+                //TreeIntensity = 2;
             }
             if (this.gameObject.tag == "checkpoint3")
             {
                 TreeGroups[3].SetActive(true);
+                //TreeIntensity = 3;
             }
            
         }

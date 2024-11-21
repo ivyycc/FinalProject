@@ -231,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 190314454803226459}
   - component: {fileID: 3292673341871487194}
+  - component: {fileID: 4975159059235967302}
   m_Layer: 0
   m_Name: T4
   m_TagString: Untagged
@@ -277,6 +278,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4975159059235967302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563207965386766689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f95ff0dc4589e4a81fc1726b6223c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  val: 0
+  checkpoint_script: {fileID: 0}
+  timer: 0
 --- !u!1 &8095877888891754000
 GameObject:
   m_ObjectHideFlags: 0

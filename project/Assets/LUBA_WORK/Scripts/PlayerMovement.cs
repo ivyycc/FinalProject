@@ -81,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject rightHand;
 
 
+    public Rigidbody leftHandRig;
+    public Rigidbody rightHandRig;
+
 
     private void ShakeCamera()
     {   
@@ -263,12 +266,21 @@ public class PlayerMovement : MonoBehaviour
 
     void ShootWeb()
     {
+
+        if (isrightHand)
+        {
+            rightHandRig.constraints = RigidbodyConstraints.FreezePosition;
+        }
+        else if(isLeftHand)
+        {
+            leftHandRig.constraints = RigidbodyConstraints.FreezePosition;
+        }
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, webRange))
         {
-            if (hit.collider.CompareTag(climbableTag))
+            if (hit.collider.CompareTag(climbableTag)|| hit.collider.CompareTag(shakyRockTag))
             {
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
@@ -377,6 +389,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rightHand.SetActive(false);
         leftHand.SetActive(false);
+        leftHandRig.constraints = RigidbodyConstraints.None;
+        rightHandRig.constraints = RigidbodyConstraints.None;
         isWebShooting = false;
         isHanging = false;
 

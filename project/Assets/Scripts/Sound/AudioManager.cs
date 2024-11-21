@@ -127,7 +127,7 @@ public class AudioManager : MonoBehaviour
         // Stop existing instance of this sound if it exists
         if (activeSoundInstances.ContainsKey(soundEventRef))
         {
-            StopSound3(soundEventRef);
+            //StopSound3(soundEventRef);
             Debug.Log("sound is stopped because it already exists");
         }
 
@@ -142,7 +142,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void StopSound3(EventReference soundEventRef)
+    /*public void StopSound3(EventReference soundEventRef)
     {
         if (activeSoundInstances.TryGetValue(soundEventRef, out FMOD.Studio.EventInstance instance))
         {
@@ -153,6 +153,22 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.Log("MUSIC not stopping :(");
+        }
+    }
+    */
+
+    public void StopSound3(EventInstance eventInstance)
+    {
+
+        if (eventInstance.isValid()) // Ensure the event instance exists
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
+            eventInstance.release(); // Release the instance to free up resources
+            Debug.Log("sound stopped");
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to stop a sound that isn't valid or playing.");
         }
     }
     public void InitializeMusic2(EventReference musicEventReference2)
@@ -183,14 +199,7 @@ public class AudioManager : MonoBehaviour
     }
 
    
-    public void InitializeStartMusic(EventReference startMusicRef)
-    {
-        //WindEventInstance = RuntimeManager.CreateInstance(WindEventRef);
-        FMOD.Studio.EventInstance GameMusicInstance = RuntimeManager.CreateInstance(startMusicRef);
-        //musicEventInstance = CreateEventInstance(musicEventReference);event:/Music/BackgroundMusic
-        GameMusicInstance.start();
-        Debug.Log("Wind STARTED");
-    }
+    
 
     public EventInstance InitializeRadio(EventReference windEvent, Vector3 position)
     {
@@ -214,7 +223,7 @@ public class AudioManager : MonoBehaviour
         }
     }
    
-    public void StopSound2(EventReference soundEvent)
+    /*public void StopSound2(EventReference soundEvent)
     {
 
         FMOD.Studio.EventInstance eventInstance;
@@ -223,6 +232,21 @@ public class AudioManager : MonoBehaviour
         // Stop the instance
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE to stop abruptly
         eventInstance.release(); // Release the instance to free up resources
+    }
+    */
+
+    public void StopSound2()
+    {
+        if (WindEventInstance.isValid())
+        {
+            WindEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // Use STOP_MODE.IMMEDIATE for abrupt stop
+            WindEventInstance.release(); // Release the instance to free up resources
+            WindEventInstance.clearHandle(); // Clear the handle to ensure it's not reused
+        }
+        else
+        {
+            Debug.LogWarning("WindEventInstance is not valid. It may have already been released or not initialized.");
+        }
     }
 
 

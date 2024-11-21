@@ -9,24 +9,25 @@ public class AmbienceSound : MonoBehaviour
     private void Start()
     {
         //AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
-        CheckIfEventIs3D(FMODEvents.instance.Rain);
+        //CheckIfEventIs3D(FMODEvents.instance.Rain);
     }
     private void OnTriggerEnter(Collider other)
     {
         if(this.gameObject.name == "Zone1")
         {
             AudioManager.instance.InitializeWind(FMODEvents.instance.WindAmbience, this.transform.position);
-            AudioManager.instance.InitializeSound(FMODEvents.instance.Music, this.transform.position);
+            AudioManager.instance.InitializeWind(FMODEvents.instance.Music, this.transform.position);
+            Debug.Log("Wind1 is playing...");
         }
         else if(this.gameObject.name == "Zone2")
         {
             AudioManager.instance.InitializeWind(FMODEvents.instance.Rain, this.transform.position);
-            AudioManager.instance.InitializeSound(FMODEvents.instance.Music2, this.transform.position);
+            AudioManager.instance.InitializeWind(FMODEvents.instance.Music2, this.transform.position);
         }
         else if(this.gameObject.name == "Zone3")
         {
             AudioManager.instance.InitializeWind(FMODEvents.instance.Rain, this.transform.position);
-            AudioManager.instance.InitializeSound(FMODEvents.instance.Music3, this.transform.position);
+            AudioManager.instance.InitializeWind(FMODEvents.instance.Music3, this.transform.position);
         }
         
         Debug.Log("wind playing");
@@ -35,12 +36,24 @@ public class AmbienceSound : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        AudioManager.instance.StopSound2(FMODEvents.instance.WindAmbience);
-        AudioManager.instance.StopSound2(FMODEvents.instance.Rain);
-        AudioManager.instance.StopSound3(FMODEvents.instance.Music); 
-        AudioManager.instance.StopSound3(FMODEvents.instance.Music2); 
-        AudioManager.instance.StopSound3(FMODEvents.instance.Music3);
-        Debug.Log("Wind stopped");
+        if (this.gameObject.name == "Zone1")
+        {
+            AudioManager.instance.StopSound2();
+            //AudioManager.instance.StopSound2(FMODEvents.instance.Music);
+            Debug.Log("AMBIENCE AND MUSIC stopped");
+        }
+        else if (this.gameObject.name == "Zone2")
+        {
+            AudioManager.instance.StopSound2();
+           // AudioManager.instance.StopSound2();
+        }
+        else if (this.gameObject.name == "Zone3")
+        {
+            AudioManager.instance.StopSound2();
+            //AudioManager.instance.StopSound2();
+        }
+
+        
     }
 
 

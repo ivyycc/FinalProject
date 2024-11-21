@@ -15,7 +15,7 @@ public class OutroCutscene: MonoBehaviour
   
     void Start()
     {
-   
+        AudioManager.instance.InitializeWind(FMODEvents.instance.CutScenesMusic, this.transform.position);
         foreach (var image in images)
         {
             image.gameObject.SetActive(false);
@@ -103,7 +103,7 @@ public class OutroCutscene: MonoBehaviour
        
         yield return FadeToBlack();
 
-       
+        AudioManager.instance.StopSound2();
         SceneManager.LoadScene("MenuUIScene");
     }
 

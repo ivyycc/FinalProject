@@ -21,10 +21,17 @@ public class MenuUIManager : MonoBehaviour
    
     void Update()
     {
-
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            AudioManager.instance.InitializeWind(FMODEvents.instance.MainMenuMusic, this.transform.position);
+        }
+        
+    }
+    public void StopMusic()
+    {
+        AudioManager.instance.StopSound2();
     }
 
-    
     public void OnPlayButtonPressed()
     {
         AudioManager.instance.PlayOneShot(FMODEvents.instance.PlayGame, this.transform.position);

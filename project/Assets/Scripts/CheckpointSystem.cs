@@ -8,6 +8,7 @@ public class CheckpointSystem : MonoBehaviour
                                 // public bool isActivated = false; // Ensure each checkpoint can only be activated once
 
     public List<GameObject> TreeGroups = new List<GameObject>();
+    public List<GameObject> RockGroups = new List<GameObject>();
 
     public int TreeIntensity;
 
@@ -32,26 +33,38 @@ public class CheckpointSystem : MonoBehaviour
             if(this.gameObject.tag == "checkpoint0")
             {
                 TreeGroups[0].SetActive(true);
+                RockGroups[0].SetActive(true);
                 //TreeIntensity = 0;
             }
             if (this.gameObject.tag == "checkpoint1")
             {
                 TreeGroups[1].SetActive(true);
+                RockGroups[1].SetActive(true);
                 //TreeIntensity = 1;
             }
             if (this.gameObject.tag == "checkpoint2")
             {
                 TreeGroups[2].SetActive(true);
+                RockGroups[2].SetActive(true);
                 //TreeIntensity = 2;
             }
             if (this.gameObject.tag == "checkpoint3")
             {
                 TreeGroups[3].SetActive(true);
+                RockGroups[3].SetActive(true);
                 //TreeIntensity = 3;
             }
-           
+            if (this.gameObject.tag == "checkpoint4")
+            {
+                //TreeGroups[].SetActive(true);
+                RockGroups[4].SetActive(true);
+                //TreeIntensity = 3;
+            }
+
         }
 
         
     }
+
+   
 }

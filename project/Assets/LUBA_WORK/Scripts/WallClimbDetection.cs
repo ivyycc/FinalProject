@@ -31,7 +31,7 @@ public class WallClimbDetection : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, maxClimbDistance))
         {
             // Check if the object hit is tagged as "Climbable"
-            if (hitInfo.collider.CompareTag("Climbable"))
+            if (hitInfo.collider.CompareTag("Climbable") || hitInfo.collider.CompareTag("ShakyRock")) //Added Another tag here for red dot
             {
               
                 // Show aiming dot if we hit a climbable wall within the specified distance

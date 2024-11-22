@@ -72,6 +72,7 @@ public class CollectObject : MonoBehaviour
         if( numOfObjectsInteractedWith >=3 )
         {
             AudioManager.instance.StopSound(AlarmInstance);
+
         }
     }
 

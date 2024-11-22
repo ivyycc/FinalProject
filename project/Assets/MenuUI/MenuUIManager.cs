@@ -25,17 +25,18 @@ public class MenuUIManager : MonoBehaviour
 
     }
 
-    
     public void OnPlayButtonPressed()
     {
-    
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.PlayGame, this.transform.position);
         SceneManager.LoadScene("CutscenesScene");
     }
 
-   
+
     public void OnSettingsButtonMainMenuPressed()
     {
-     
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         mainMenuPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }
@@ -43,22 +44,23 @@ public class MenuUIManager : MonoBehaviour
     public void OnSettingsButtonPressed()
     {
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         pauseMenuPanel.SetActive(false);
         settingsMenuPanel.SetActive(true);
     }
 
-
-
     public void OnQuitButtonPressed()
     {
-        
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
         Application.Quit();
     }
 
-  
+
     public void OnBackButtonMainMenuPressed()
     {
-     
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
         settingsMenuPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
@@ -66,20 +68,22 @@ public class MenuUIManager : MonoBehaviour
     public void OnBackButtonPressed()
     {
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
         settingsMenuPanel.SetActive(false);
-        controlsMenuPanel.SetActive(false);
         pauseMenuPanel.SetActive(true);
     }
 
     public void OnContinueButtonPressed()
     {
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         pauseMenuPanel.SetActive(false);
     }
 
     public void OnControlsButtonPressed()
     {
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         pauseMenuPanel.SetActive(false);
         controlsMenuPanel.SetActive(true);
     }
@@ -88,6 +92,7 @@ public class MenuUIManager : MonoBehaviour
     public void OnControlsButtonMainMenuPressed()
     {
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Click, this.transform.position);
         mainMenuPanel.SetActive(false);
         controlsMenuPanel.SetActive(true);
     }

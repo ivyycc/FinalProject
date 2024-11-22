@@ -446,7 +446,13 @@ public class PlayerMovement : MonoBehaviour
         if (currentHangTime >= maxHangTime)
         {
             Debug.Log("Max hang time exceeded, falling!");
-            
+            if (currentRock != null)
+            {
+                currentRock.SetActive(false);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.ShakyRockBreak, currentRock.transform.position);
+                AudioManager.instance.StopSound(rockShakyInstance);
+                currentRock = null;
+            }
             StopWeb(); // Call StopWeb to make the player fall
         }
         
@@ -464,13 +470,7 @@ public class PlayerMovement : MonoBehaviour
 
     void StopWeb()
     {
-        if (currentRock != null)
-        {
-            currentRock.SetActive(false);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.ShakyRockBreak, currentRock.transform.position);
-            AudioManager.instance.StopSound(rockShakyInstance);
-            currentRock = null;
-        }
+        
         isWebShooting = false;
         isHanging = false;
 

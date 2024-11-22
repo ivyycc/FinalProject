@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public float pullSpeed = 15f; // Speed at which player is pulled to the wall
     public string climbableTag = "Climbable";
     string shakyRockTag = "ShakyRock";
+
+    public bool isShakyRock;
+    public bool isClimbable;
     public LineRenderer webLine;
     private bool isWebShooting = false; // Tracks if web is being shot
     private Vector3 webTarget; // The point where the web touched the wall
@@ -33,7 +36,18 @@ public class PlayerMovement : MonoBehaviour
     public float maxHangDistance = 9f; // Maximum distance allowed while hanging
     public float handDistance = 1.5f;
 
-    
+
+    // Hand Prefabs
+  
+
+    // Reference to the current instantiated hand
+    private GameObject currentHandInstance;
+
+    // Offset for hand placement
+    public float handOffset = 0.5f; // Distance to offset the hand closer to the web line
+
+
+
 
     // Player Stats
     public int playerHealth;
@@ -61,6 +75,18 @@ public class PlayerMovement : MonoBehaviour
 
 
     hangSlider hangSliderScript;
+
+    //HandLogic
+
+    public bool isLeftHand;
+    public bool isrightHand;
+
+    //public GameObject leftHand;
+  //  public GameObject rightHand;
+
+//
+    //public Rigidbody leftHandRig;
+    //public Rigidbody rightHandRig;
 
 
     public GameObject currentRock;
@@ -106,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+       // leftHand.SetActive(false);
+        //rightHand.SetActive(false);
         controller = GetComponent<CharacterController>();
         hangSliderScript = GetComponent<hangSlider>();
 
@@ -115,7 +143,8 @@ public class PlayerMovement : MonoBehaviour
             webLine.positionCount = 0;
             webLine.startWidth = 0.1f; // Adjust this value to set the start width
             webLine.endWidth = 0.1f;   // Adjust this value to set the end width
-
+            webLine.material = new Material(Shader.Find("Sprites/Default"));
+            webLine.useWorldSpace = true;
         }
 
         // Initialize the camera's field of view to normal
@@ -143,13 +172,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // Right-click to shoot web
         {
-            webColor.SetColor("_Color", Color.blue);
+            webColor.SetColor("_Color", Color.red);
+            webLine.material = webColor;
+            //rightHand.SetActive(true);
+
+            // webColor.SetColor("_Color", Color.blue);
+            // webLine.material = webColor;
+            isLeftHand = false;
+            isrightHand = true;
             ShootWeb();
+            Debug.Log("Left click color set to red");
         }
         else if (Input.GetMouseButtonDown(0)) // Left-click to shoot web
         {
-            webColor.SetColor("_Color", Color.red);
+            webLine.startColor = Color.blue;
+            webLine.endColor = Color.blue;
+            // leftHand.SetActive(true);
+            // webColor.SetColor("_Color", Color.red);
+            //webLine.material = webColor;
+            isLeftHand = true;
+            isrightHand = false;
             ShootWeb();
+            Debug.Log("Right click color set to blue");
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isHanging)
@@ -269,6 +313,19 @@ public class PlayerMovement : MonoBehaviour
 
     void ShootWeb()
     {
+
+        if (isrightHand)
+        {
+            webLine.startColor = Color.blue;
+            webLine.endColor = Color.blue;
+            //rightHandRig.constraints = RigidbodyConstraints.FreezePosition;
+        }
+        else if(isLeftHand)
+        {
+            webLine.startColor = Color.red;
+            webLine.endColor = Color.red;
+            //leftHandRig.constraints = RigidbodyConstraints.FreezePosition;
+        }
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
@@ -276,6 +333,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.CompareTag(climbableTag))
             {
+                isClimbable = true;
+                isShakyRock = false;
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
                 isWebShooting = true;
@@ -287,9 +346,14 @@ public class PlayerMovement : MonoBehaviour
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.hitRock, this.transform.position);
                 
                 useGravity = false;
+
+               
             }
             else if (hit.collider.CompareTag(shakyRockTag))
             {
+                isClimbable = false;
+                isShakyRock = true;
+                Debug.Log("SHAKY ROCK HIT");
                 maxHangTime = 3f;
                 Debug.Log("Hit a climbable object!");
                 webTarget = hit.point;
@@ -315,6 +379,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Missed! No object hit within range.");
         }
     }
+
+    
+
+
+
 
     void PullPlayerToTarget()
     {
@@ -412,7 +481,12 @@ public class PlayerMovement : MonoBehaviour
         hangTimeText.text = "  ";
         hangSliderScript.hideSlider();
 
-        
+        if (webLine != null)
+        {
+            webLine.positionCount = 0;
+            // Reset material if needed
+            webLine.material = new Material(Shader.Find("Sprites/Default"));
+        }
     }
 
 

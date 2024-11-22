@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 1300346800}
   canMoveToNextScene: 0
-  canMove: {fileID: 0}
+  canMove: {fileID: 186884963}
 --- !u!1 &1300346800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,6 +2133,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3776820310089393770, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 186884962}
     - target: {fileID: 745520399868587731, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2217,7 +2221,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1074079534393738615, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2225,6 +2230,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 186884963}
   m_SourcePrefab: {fileID: 100100000, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+--- !u!114 &1722975476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 521923134537903089, guid: e6dc2a9bb75c6b8498110027420bd362, type: 3}
+  m_PrefabInstance: {fileID: 1722975475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186884962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2594c2c37360e984c927ccc925ce2b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1814580546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,6 +2643,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 186884967}
+    - target: {fileID: 8483975008827666463, guid: d5d41787fa8230d49b9a98bcf5c5a53c, type: 3}
+      propertyPath: controlsMenuPanel
+      value: 
+      objectReference: {fileID: 353926528591588539}
     - target: {fileID: 8554443244395281098, guid: d5d41787fa8230d49b9a98bcf5c5a53c, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
@@ -2711,11 +2731,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9136368540162967499, guid: d5d41787fa8230d49b9a98bcf5c5a53c, type: 3}
+      propertyPath: playerLook
+      value: 
+      objectReference: {fileID: 1722975476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5d41787fa8230d49b9a98bcf5c5a53c, type: 3}
+--- !u!1 &353926528591588539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2450415788534749972, guid: d5d41787fa8230d49b9a98bcf5c5a53c, type: 3}
+  m_PrefabInstance: {fileID: 353926528591588538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2472750737302128431 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6159236947090171333, guid: e45621b527af900488859241507fe426, type: 3}

@@ -1861,7 +1861,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8483975008827666463}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
-        m_MethodName: OnBackButtonPressed
+        m_MethodName: OnBackButtonControlsPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2636,6 +2636,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 0}
   settingsMenuPanel: {fileID: 1667555121261561832}
   pauseMenuPanel: {fileID: 3530853749195397884}
+  controlsMenuPanel: {fileID: 0}
 --- !u!114 &9136368540162967499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,7 +2651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLook: {fileID: 0}
   sensitivitySlider: {fileID: 4146830575279093586}
-  controlsMenuPanel: {fileID: 2450415788534749972}
 --- !u!1 &9142126395261122284
 GameObject:
   m_ObjectHideFlags: 0

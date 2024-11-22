@@ -73,6 +73,14 @@ public class MenuUIManager : MonoBehaviour
         pauseMenuPanel.SetActive(true);
     }
 
+    public void OnBackButtonControlsPressed()
+    {
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, this.transform.position);
+        controlsMenuPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
+
     public void OnContinueButtonPressed()
     {
 

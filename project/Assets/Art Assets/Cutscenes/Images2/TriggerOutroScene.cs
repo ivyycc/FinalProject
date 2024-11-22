@@ -32,7 +32,7 @@ public class TriggerOutroScene : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-         
+            AudioManager.instance.StopSound2();
             Time.timeScale = 0;
             Debug.Log("In Trigger");
             canLoadOutro = true;

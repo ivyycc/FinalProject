@@ -83,7 +83,7 @@
 			<value>10</value>
 		</property>
 		<property name="pitch">
-			<value>11</value>
+			<value>6</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{22d64faf-0c61-4ad0-8d17-244152ff8710}</destination>

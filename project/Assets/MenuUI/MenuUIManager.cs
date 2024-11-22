@@ -7,7 +7,8 @@ public class MenuUIManager : MonoBehaviour
 {
     public GameObject mainMenuPanel; 
     public GameObject settingsMenuPanel; 
-    public GameObject pauseMenuPanel;    
+    public GameObject pauseMenuPanel;
+    public GameObject controlsMenuPanel;
 
    
     void Start()
@@ -66,6 +67,7 @@ public class MenuUIManager : MonoBehaviour
     {
 
         settingsMenuPanel.SetActive(false);
+        controlsMenuPanel.SetActive(false);
         pauseMenuPanel.SetActive(true);
     }
 
@@ -73,5 +75,20 @@ public class MenuUIManager : MonoBehaviour
     {
 
         pauseMenuPanel.SetActive(false);
+    }
+
+    public void OnControlsButtonPressed()
+    {
+
+        pauseMenuPanel.SetActive(false);
+        controlsMenuPanel.SetActive(true);
+    }
+
+
+    public void OnControlsButtonMainMenuPressed()
+    {
+
+        mainMenuPanel.SetActive(false);
+        controlsMenuPanel.SetActive(true);
     }
 }

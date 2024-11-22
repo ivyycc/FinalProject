@@ -14,19 +14,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Blockout.unity
     guid: ff1eb07b2c2dfb34dbb12205f8bb403d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuUIScene.unity
     guid: 0a0ee2da2273aa84b8a618c15df51809
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CutscenesScene.unity
     guid: 095a3537d5375f942b5ad7ab54d2d24e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BeginningScene.unity
     guid: 9fb154565b2d57e4a8b5615d4d121656
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: a25c93b9005e54a49a1e094e79be5afb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CutscenesScene2.unity
     guid: ec6769c63a324a24b856c8ff4e1dc3ca
   m_configObjects: {}

@@ -24,12 +24,13 @@ public class InputManagerr : MonoBehaviour
     {
         // using value frm mvmt act
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
 
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        //look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()
